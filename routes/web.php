@@ -42,6 +42,7 @@ use App\Http\Controllers\LoanHandover;
 use App\Http\Controllers\LoanCollection;
 use App\Http\Controllers\CashCloseController;
 use App\Http\Controllers\NoticesController;
+use App\Http\Controllers\DepositTransactionReport;
 
 
 
@@ -513,6 +514,8 @@ Route::resources([
 
 
 ]);
+
+Route::get('deposit_transaction',[DepositTransactionReport::class,'index']);
 
 
 Route::get('create_cash_close',[CashCloseController::class,'create_cash_close']);
