@@ -92,16 +92,10 @@ $companyInfo = company_information::first();
                     <b>সঞ্চয় ফেরত</b>
                 </div>
             </a>
-            <a class="box-link col-lg-2 col-md-6 col-12" href="#">
+            <a class="box-link col-lg-2 col-md-6 col-12 d-none" href="#">
                 <div class="link-box text-center" >
                     <img src="{{asset('Backend/avatar')}}/saving-close.png" alt="" class="img-fluid" style="max-width: 90px;"><br>
                     <b>ক্যাশ ক্লোজ তৈরি করুন</b>
-                </div>
-            </a>
-            <a class="box-link col-lg-2 col-md-6 col-12" href="{{route('fixeddeposit_registration.create')}}">
-                <div class="link-box text-center" >
-                    <img src="{{asset('Backend/avatar')}}/new_fixed_deposit.png" alt="" class="img-fluid" style="max-width: 90px;"><br>
-                    <b>সঞ্চয় হিসাব ক্লোজ </b>
                 </div>
             </a>
             <a class="box-link col-lg-2 col-md-6 col-12" href="{{route('investment_registration.create')}}">
@@ -122,25 +116,25 @@ $companyInfo = company_information::first();
                     <b>ঋণ কিস্তি</b>
                 </div>
             </a>
-            <a class="box-link col-lg-2 col-md-6 col-12" href="#">
+            <a class="box-link col-lg-2 col-md-6 col-12 d-none" href="#">
                 <div class="link-box text-center" >
                     <img src="{{asset('Backend/avatar')}}/collection-sheet-entry.png" alt="" class="img-fluid" style="max-width: 90px;"><br>
                     <b>সমিতি কালেকশন</b>
                 </div>
             </a>
-            <a class="box-link col-lg-2 col-md-6 col-12" href="#">
+            <a class="box-link col-lg-2 col-md-6 col-12 d-none" href="#">
                 <div class="link-box text-center" >
                     <img src="{{asset('Backend/avatar')}}/quick-collection.png" alt="" class="img-fluid" style="max-width: 90px;"><br>
                     <b>সদস্য কিস্তি কালেকশন </b>
                 </div>
             </a>
-            <a class="box-link col-lg-2 col-md-6 col-12" href="{{url('weeklysavingloancollsheet')}}">
+            <a class="box-link col-lg-2 col-md-6 col-12 d-none" href="{{url('weeklysavingloancollsheet')}}">
                 <div class="link-box text-center" >
                     <img src="{{asset('Backend/avatar')}}/collection-details-report.png" alt="" class="img-fluid" style="max-width: 90px;"><br>
                     <b>আজকের সকল কালেকশন</b>
                 </div>
             </a>
-            <a class="box-link col-lg-2 col-md-6 col-12" href="{{url('monthlyprofitsheet')}}">
+            <a class="box-link col-lg-2 col-md-6 col-12" href="{{url('monthlycollsheet')}}">
                 <div class="link-box text-center" >
                     <img src="{{asset('Backend/avatar')}}/collection_sheet_report.png" alt="" class="img-fluid" style="max-width: 90px;"><br>
                     <b>মাসিক কালেকশান শীট</b>
@@ -152,13 +146,13 @@ $companyInfo = company_information::first();
                     <b>ব্যাংক স্টেটমেন্ট রিপোর্ট</b>
                 </div>
             </a>
-            <a class="box-link col-lg-2 col-md-6 col-12" href="#">
+            <a class="box-link col-lg-2 col-md-6 col-12" href="{{url('deposit_transaction')}}"></a>
                 <div class="link-box text-center" >
                     <img src="{{asset('Backend/avatar')}}/transection.png" alt="" class="img-fluid" style="max-width: 90px;"><br>
                     <b>এ্যাকাউন্ট লেনদেন</b>
                 </div>
             </a>
-            <a class="box-link col-lg-2 col-md-6 col-12" href="#">
+            {{-- <a class="box-link col-lg-2 col-md-6 col-12" href="#">
                 <div class="link-box text-center" >
                     <img src="{{asset('Backend/avatar')}}/ledger-transaction.png" alt="" class="img-fluid" style="max-width: 90px;"><br>
                     <b>লেজার লেনদেন</b>
@@ -229,7 +223,7 @@ $companyInfo = company_information::first();
                     <img src="{{asset('Backend/avatar')}}/health-graph-100.png" alt="" class="img-fluid" style="max-width: 90px;"><br>
                     <b>সদস্য ব্যালেন্স রিপোর্ট</b>
                 </div>
-            </a>
+            </a> --}}
         </div>
 
         <div class="row mt-4 d-none">
