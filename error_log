@@ -1,0 +1,12 @@
+[05-Oct-2023 12:26:36 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /home/shamalchaya/public_html/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php:70
+Stack trace:
+#0 /home/shamalchaya/public_html/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php(70): PDO->__construct('mysql:host=loca...', 'shamalchaya_adm...', 'Bangla%desh&202...', Array)
+#1 /home/shamalchaya/public_html/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php(46): Illuminate\Database\Connectors\Connector->createPdoConnection('mysql:host=loca...', 'shamalchaya_adm...', 'Bangla%desh&202...', Array)
+#2 /home/shamalchaya/public_html/vendor/laravel/framework/src/Illuminate/Database/Connectors/MySqlConnector.php(24): Illuminate\Database\Connectors\Connector->createConnection('mysql:host=loca...', Array, Array)
+#3 /home/shamalchaya/public_html/vendor/laravel/framework/src/Illuminate/Database/Connectors/ConnectionFactory.php(184): Illuminate\Database\Connectors\MySqlConnector-> in /home/shamalchaya/public_html/vendor/laravel/framework/src/Illuminate/Database/Connection.php on line 712
+[05-Oct-2023 12:26:36 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /home/shamalchaya/public_html/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php:70
+Stack trace:
+#0 /home/shamalchaya/public_html/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php(70): PDO->__construct('mysql:host=loca...', 'shamalchaya_adm...', 'Bangla%desh&202...', Array)
+#1 /home/shamalchaya/public_html/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php(46): Illuminate\Database\Connectors\Connector->createPdoConnection('mysql:host=loca...', 'shamalchaya_adm...', 'Bangla%desh&202...', Array)
+#2 /home/shamalchaya/public_html/vendor/laravel/framework/src/Illuminate/Database/Connectors/MySqlConnector.php(24): Illuminate\Database\Connectors\Connector->createConnection('mysql:host=loca...', Array, Array)
+#3 /home/shamalchaya/public_html/vendor/laravel/framework/src/Illuminate/Database/Connectors/ConnectionFactory.php(184): Illuminate\Database\Connectors\MySqlConnector-> in /home/shamalchaya/public_html/vendor/laravel/framework/src/Illuminate/Database/Connection.php on line 712
