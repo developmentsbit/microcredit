@@ -146,7 +146,7 @@ $companyInfo = company_information::first();
                     <b>ব্যাংক স্টেটমেন্ট রিপোর্ট</b>
                 </div>
             </a>
-            <a class="box-link col-lg-2 col-md-6 col-12" href="{{url('deposit_transaction')}}"></a>
+            <a class="box-link col-lg-2 col-md-6 col-12" href="{{url('deposit_transaction')}}">
                 <div class="link-box text-center" >
                     <img src="{{asset('Backend/avatar')}}/transection.png" alt="" class="img-fluid" style="max-width: 90px;"><br>
                     <b>এ্যাকাউন্ট লেনদেন</b>
