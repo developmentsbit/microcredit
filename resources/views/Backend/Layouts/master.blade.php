@@ -213,7 +213,7 @@ $companyInfo = company_information::first();
 
 				<div class="m-header">
 					<a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
-					<a href="{{url('/')}}" class="b-brand">
+					<a href="{{url('home_dashboard')}}" class="b-brand">
 						<!-- ========   change your logo hear   ============ -->
 						<img src="{{asset('Backend')}}/images/{{$companyInfo->logo}}" alt="" class="logo">
 						<img src="{{asset('Backend')}}/images/{{$companyInfo->logo}}" alt="" class="logo-thumb">

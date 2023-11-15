@@ -72,6 +72,18 @@ class BackendController extends Controller
         $fixed_deposit_schema = fixed_deposit_schema::count();
         return view('Backend.Layouts.home',compact('total_user','investment_schema','saving_schema','fixed_deposit_schema'));
     }
+
+    public function home_dashboard()
+    {
+
+        // return base_path();
+
+        $total_user = User::count();
+        $investment_schema = investmentschema::count();
+        $saving_schema = saving_schema::count();
+        $fixed_deposit_schema = fixed_deposit_schema::count();
+        return view('Backend.Layouts.home_dashboard',compact('total_user','investment_schema','saving_schema','fixed_deposit_schema'));
+    }
     public function loadEmployee(Request $request)
     {
         // return $request->emp_id;

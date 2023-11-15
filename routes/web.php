@@ -75,6 +75,7 @@ Route::get('/register', function() {
 // Route::get('/select-branch', [App\Http\Controllers\BackendController::class, 'select_branch']);
 
 Route::get('/dashboard', [App\Http\Controllers\BackendController::class, 'dashboard']);
+Route::get('/home_dashboard', [App\Http\Controllers\BackendController::class, 'home_dashboard']);
 
 Route::get('/fixed_deposit_reg_form',[BackendController::class,'fixed_deposit_reg_form']);
 Route::get('/investment_registration_form',[BackendController::class,'investment_registration_form']);

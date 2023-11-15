@@ -1,9 +1,9 @@
 <?php
 class database {
-  
+
     public $servername="localhost";
 	public $username="shamalchaya_admin";
-	public $pass="Bangla%desh&2023";
+	public $pass="Bangla%desh&20233";
 	public $db_name="shamalchaya_database";
 // 	public $username="root";
 // 	public $pass="";
@@ -20,7 +20,7 @@ class database {
 	{
 		$this->link= new mysqli($this->servername,$this->username,$this->pass,$this->db_name) or die ("database connect failed".$this->link->error."(".$this->link->errno.")");
 			mysqli_query($this->link,"SET character_set_results = 'utf8', character_set_client = 'utf8', character_set_connection = 'utf8', character_set_database = 'utf8', character_set_server = 'utf8'");
- 
+
 		if(!$this->link)
 		{
 			echo $this->eror="connection failed";
@@ -32,7 +32,7 @@ class database {
     if(strlen($money[1])==0)
         $money[1]='00';
     if(strlen($money[0])==0)
-        $money[0]='0';    
+        $money[0]='0';
     if(strlen($money[0])>2){
         $taka=$money[0];
         $thousand=substr($taka, -3);
@@ -52,8 +52,8 @@ class database {
             $taka_add .=$pp[$j].',';
         return $taka_add.$thousand;
     }else
-        return $money[0].".".$money[1];    
-}  
+        return $money[0].".".$money[1];
+}
 
 public function month_name($month)
 {

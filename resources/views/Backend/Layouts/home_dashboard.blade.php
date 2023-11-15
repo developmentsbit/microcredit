@@ -24,21 +24,6 @@ $companyInfo = company_information::first();
 <div class="pcoded-main-container">
     <div class="pcoded-content">
         <!-- [ breadcrumb ] start -->
-        <div class="page-header">
-            <div class="page-block">
-                <div class="row align-items-center">
-                    <div class="col-md-12">
-                        <div class="page-header-title">
-                            <h5 class="m-b-10">ড্যাশবোর্ড</h5>
-                        </div>
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{url('/')}}"><i class="feather icon-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="{{url('/')}}">ড্যাশবোর্ড</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <div class="row pt-2 mt-4" style="background-color: white;">
             <div class="col-2">
@@ -54,20 +39,52 @@ $companyInfo = company_information::first();
             </div>
         </div>
         <!-- [ breadcrumb ] end -->
-        <!-- [ Main Content ] start -->
+        <!-- [ Main Header ] start -->
         <div class="row">
-            <a class="box-link col-lg-2 col-md-6 col-12" href="{{route('add_member.create')}}">
-                <div class="link-box text-center" >
-                    <img src="{{asset('Backend/avatar')}}/add_user.png" alt="" class="img-fluid" style="max-width: 90px;"><br>
-                    <b>সদস্য ভর্তি</b>
+            <a class="box-link col-lg-12 col-md-12 col-12" href="#" style="padding: 17px 20px;">
+                <div class="row">
+                    <div class="col-sm-3 col-lg-3 mb-3 link-box">
+                        <p><b>Welcome back, SUPER ADMIN !</b></p>
+                        <span class="fs-semibold text-muted">Track your somity activity, leads and deals here.</span>
+                    </div>
+                    <div class="col-sm-3 col-lg-3 mb-3 link-box">
+                        <label>ব্রাঞ্চ নাম</label><span class="text-danger">*</span>
+                        <div class="input-group">
+                            <select class="js-example-basic-single form-control" required>
+                                <option>নির্বাচন করুন</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-lg-3 mb-3 link-box">
+                        <label>কেন্দ্র নাম</label><span class="text-danger">*</span>
+                        <div class="input-group">
+                            <select class="js-example-basic-single form-control" required>
+                                <option>নির্বাচন করুন</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </a>
-            <a class="box-link col-lg-2 col-md-6 col-12" href="{{route('add_member.index')}}">
-                <div class="link-box text-center" >
-                    <img src="{{asset('Backend/avatar')}}/view_user.png" alt="" class="img-fluid" style="max-width: 90px;"><br>
-                    <b>সদস্য তালিকা</b>
+        </div>
+        <!-- [ Main Header ] end -->
+
+        <div class="row col-lg-4 col-md-6 col-12">
+            <a class="bg-danger box-link" href="#">
+                <div class="col-sm-3 col-lg-3 mb-3 link-box">
+                    <p><b>Your target is incomplete</b></p>
+                    <span class="fs-semibold text-muted">First Text</span>
                 </div>
             </a>
+            <a class="box-link" href="#">
+                <div class="link-box text-center" >
+                    <img src="{{asset('Backend/avatar')}}/passbook.png" alt="" class="img-fluid" style="max-width: 90px;"><br>
+                    <b>সদস্য পাসবই</b>
+                </div>
+            </a>
+        </div>
+
+        {{--<div class="row">
+            
             <a class="box-link col-lg-2 col-md-6 col-12" href="#">
                 <div class="link-box text-center" >
                     <img src="{{asset('Backend/avatar')}}/passbook.png" alt="" class="img-fluid" style="max-width: 90px;"><br>
@@ -230,7 +247,7 @@ $companyInfo = company_information::first();
                     <b>সদস্য ব্যালেন্স রিপোর্ট</b>
                 </div>
             </a>
-        </div>
+        </div>--}}
 
         <div class="row mt-4 d-none">
             <!-- table card-1 start -->
