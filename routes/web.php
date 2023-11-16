@@ -516,7 +516,8 @@ Route::resources([
 ]);
 
 Route::get('deposit_transaction',[DepositTransactionReport::class,'index']);
-
+Route::post('getFixedDepositMemebers',[DepositTransactionReport::class,'getFixedDepositMemebers']);
+Route::get('depositTransactionReport',[DepositTransactionReport::class,'depositTransactionReport']);
 
 Route::get('create_cash_close',[CashCloseController::class,'create_cash_close']);
 Route::post('getLastCashClose',[CashCloseController::class,'getLastCashClose']);
