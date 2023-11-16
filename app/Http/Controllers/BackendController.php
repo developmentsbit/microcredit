@@ -72,18 +72,6 @@ class BackendController extends Controller
         $fixed_deposit_schema = fixed_deposit_schema::count();
         return view('Backend.Layouts.home',compact('total_user','investment_schema','saving_schema','fixed_deposit_schema'));
     }
-
-    public function home_dashboard()
-    {
-
-        // return base_path();
-
-        $total_user = User::count();
-        $investment_schema = investmentschema::count();
-        $saving_schema = saving_schema::count();
-        $fixed_deposit_schema = fixed_deposit_schema::count();
-        return view('Backend.Layouts.home_dashboard',compact('total_user','investment_schema','saving_schema','fixed_deposit_schema'));
-    }
     public function loadEmployee(Request $request)
     {
         // return $request->emp_id;
@@ -567,6 +555,22 @@ class BackendController extends Controller
 
     public function company_structure()
     {
+        if(Auth::user()->user_role == 1)
+      {
+        $data = employee_info::join('branch_infos','branch_infos.id','=','employee_infos.branch_id')
+        ->select('employee_infos.*','branch_infos.branch_name')
+        ->orderBy('sl','ASC')
+        ->get();
+    }
+    else
+    {
+        $data = admin_branch_info::where('admin_branch_infos.admin_id',Auth::user()->id)
+        ->join('employee_infos','employee_infos.branch_id','=','admin_branch_infos.branch_id')
+        ->join('branch_infos','branch_infos.id','=','admin_branch_infos.branch_id')
+        ->select('employee_infos.*','branch_infos.branch_name')
+        ->get();
+    }
+                
         $total_user = User::count();
         $investment_schema = investmentschema::count();
         $saving_schema = saving_schema::count();
@@ -594,7 +598,7 @@ class BackendController extends Controller
         //deposit
         $totals['total_deposit_collection'] = fixed_deposit_collection::where('collection_date',date('Y-m-d'))->where('approval',1)->sum('deposit_ammount');
         $totals['total_deposit_provide'] = fixed_deposit_return::where('return_date',date('Y-m-d'))->where('approval',1)->sum('deposit_return_ammount');
-        return view('Backend.Layouts.company_structure',compact('total_user','investment_schema','saving_schema','fixed_deposit_schema','totals','grandtotals'));
+        return view('Backend.Layouts.company_structure',compact('data','total_user','investment_schema','saving_schema','fixed_deposit_schema','totals','grandtotals'));
     }
 
 

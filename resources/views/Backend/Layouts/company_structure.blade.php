@@ -18,23 +18,61 @@ a.box-link:hover {
 <!-- [ Main Content ] start -->
 <div class="pcoded-main-container">
     <div class="pcoded-content">
-        <!-- [ breadcrumb ] start -->
-        <div class="page-header">
-            <div class="page-block">
-                <div class="row align-items-center">
-                    <div class="col-md-12">
-                        <div class="page-header-title">
-                            <h5 class="m-b-10">কোম্পানির তথ্যসমূহ</h5>
+        <!-- [ Main Header ] start -->
+        <div class="row">
+            <a class="box-link col-lg-12 col-md-12 col-12" href="#" style="padding: 17px 20px;">
+                <div class="row">
+                    <div class="col-sm-3 col-lg-3 mb-3 link-box">
+                        <p><b>Welcome back, SUPER ADMIN !</b></p>
+                        <span class="fs-semibold text-muted">Track your somity activity, leads and deals here.</span>
+                    </div>
+                    <div class="col-sm-3 col-lg-3 mb-3 link-box">
+                        <label>ব্রাঞ্চ নাম</label><span class="text-danger">*</span>
+                        <div class="input-group">
+                            <select class="js-example-basic-single form-control @error('branch_id') is-invalid @enderror" name="branch_id" required="" id="branch_id" onchange="loadMember()">
+                                <option value="">নির্বাচন করুন</option>
+                                @php 
+                                if(Auth::user()->user_role == 1)
+                                {
+                                    $admin_branch = branch_info::where('status',1)->get();
+                                }
+                                else {
+
+                                    $admin_branch = admin_branch_info::where('admin_branch_infos.admin_id',Auth::user()->id)
+                                    ->join('branch_infos','branch_infos.id','=','admin_branch_infos.branch_id')
+                                    ->select('branch_infos.*')
+                                    ->get();
+                                }
+
+                                @endphp
+
+                                @if($admin_branch)
+                                @foreach($admin_branch as $showbranch)
+
+                                <option value="{{ $showbranch->id }}">{{ $showbranch->branch_name }}</option>
+
+                                @endforeach
+                                @endif
+
+                            </select>
                         </div>
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{url('/')}}"><i class="feather icon-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="{{url('/')}}">কোম্পানির তথ্যসমূহ</a></li>
-                        </ul>
+                    </div>
+                    <div class="col-sm-3 col-lg-3 mb-3 link-box">
+                        <label>কেন্দ্র নাম</label><span class="text-danger">*</span>
+                        <div class="input-group">
+                            <select class="js-example-basic-single form-control" required>
+                                <option>নির্বাচন করুন</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-lg-3 link-box" style="padding: 31px 75px;">
+                        <button type="button" class="btn btn-secondary" onClick="window.location.reload();">Reload Dashboard</button>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
-        <!-- [ breadcrumb ] end -->
+        <!-- [ Main Header ] end -->
+
         <!-- [ Main Content ] start -->
 
 
@@ -386,5 +424,77 @@ a.box-link:hover {
                 </div>
             </div>
         </div>
+
+        <script type="text/javascript">
+            function loadArea()
+            {
+                var branch_id = $('#branch_id').val();
+
+                // var default = "<option value=''>নির্বাচন করুন</option>";
+
+                // alert(branch_id);
+                if(branch_id == "")
+                {
+                    $('#area_id').html("");
+                }
+                else
+                {
+                    $.ajax({
+                        headers : {
+                            'X-CSRF-TOKEN' : '{{ csrf_token() }}'
+                        },
+
+                        url : '{{ url('loadArea') }}',
+
+                        type : 'POST',
+
+                        data : {branch_id},
+
+                        success : function(data)
+                        {
+                            $('#area_id').html(data);
+                            // alert(data);
+                        }
+                    });
+                }
+            }
+        </script>
+
+
+        <script>
+            function loadMember()
+            {
+                var area_id = $('#area_id').val();
+                // alert(area_id);
+                var branch_id = $('#branch_id').val();
+                // alert(branch_id);
+                if(area_id == "")
+                {
+
+                }
+                else
+                {
+                    $.ajax({
+
+                        headers : {
+                            'X-CSRF-TOKEN' : '{{ csrf_token() }}'
+                        },
+
+                        url : '{{ url('loadMember') }}',
+
+                        type : 'POST',
+
+                        data : {area_id,branch_id},
+
+                        success : function(data)
+                        {
+                            $('#member_id').html(data);
+                            // alert(data);
+                        }
+
+                    });
+                }
+            }
+        </script>
 
 @endsection
