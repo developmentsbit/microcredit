@@ -29,7 +29,7 @@ class FixedDepositReturn extends Controller
      */
     public function index(Request $request)
     {
-        
+
     }
 
     /**
@@ -402,7 +402,7 @@ class FixedDepositReturn extends Controller
 
         return view('Backend.User.FixedDepositReturn.show_new_return_report',compact('data','sl','total','branch','area'));
     }
-    
+
     public function fixed_deposit_coll_return(Request $request)
     {
         if(Auth::user()->user_role == 1)

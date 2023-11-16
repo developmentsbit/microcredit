@@ -13,11 +13,11 @@
                         <h5>ডিপোজিট লেনদেন তথ্য</h5>
                     </div>
                     <div class="card-body">
-                        <form action="report/invest_collection.php" method="get">
+                        <form action="{{url('/depositTransactionReport')}}" method="get">
 
                             <div class="row">
 
-                                <div class="col-sm-2 mb-3">
+                                <div class="col-sm-4 mb-3">
                                     <label>ব্রাঞ্চ নাম</label>
                                     <div class="input-group">
                                         <select class="js-example-basic-single form-control @error('branch_id') is-invalid @enderror" name="branch_id" required="" id="branch_id" onchange="loadArea()">
@@ -39,10 +39,10 @@
                                 </div>
 
 
-                                <div class="col-sm-2 mb-3">
+                                <div class="col-sm-4 mb-3">
                                     <label>কেন্দ্র নাম</label>
                                     <div class="input-group">
-                                        <select class="js-example-basic-single form-control @error('area_id') is-invalid @enderror" name="area_id" id="area_id" required="">
+                                        <select class="js-example-basic-single form-control @error('area_id') is-invalid @enderror" name="area_id" id="area_id" required="" onchange="return getFixedDepositMemeber()">
                                             <option value="">নির্বাচন করুন</option>
                                         </select>
                                     </div>
@@ -50,26 +50,30 @@
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-
-                                <div class="col-sm-2 mb-3">
-                                    <label>বিনিয়োগ স্কিমা</label>
+                                <div class="col-sm-4 mb-3">
+                                    <label>মেম্বার নির্বাচন করুন</label>
                                     <div class="input-group">
-                                        <select class="js-example-basic-single form-control @error('schema_id') is-invalid @enderror" name="invest_schema" id="invest_schema" required="">
+                                        <select class="js-example-basic-single form-control @error('fixed_deposit_id') is-invalid @enderror" name="fixed_deposit_id" id="fixed_deposit_id" required="">
                                             <option value="">নির্বাচন করুন</option>
-
                                         </select>
                                     </div>
-                                    @error('schema_id')
+                                    @error('fixed_deposit_id')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-
-
-
-                                <div class="col-sm-2 mb-3">
-                                    <label>তারিখ</label>
+                                <div class="col-sm-6 col-md-6 mb-3">
+                                    <label>প্রথম তারিখ</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control form-control-sm date" name="date" value="<?php echo date('d-m-Y'); ?>">
+                                        <input type="text" class="form-control form-control-sm date" name="from_date" value="<?php echo date('d-m-Y'); ?>">
+                                    </div>
+                                    @error('date')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="col-sm-6 col-md-6 mb-3">
+                                    <label>শেষ তারিখ</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control form-control-sm date" name="to_date" value="<?php echo date('d-m-Y'); ?>">
                                     </div>
                                     @error('date')
                                     <div class="alert alert-danger">{{ $message }}</div>
@@ -129,6 +133,34 @@
                         {
                             $('#area_id').html(data);
                             // alert(data);
+                        }
+                    });
+                }
+            }
+        </script>
+
+
+        <script>
+            function getFixedDepositMemeber()
+            {
+                let branch_id = $('#branch_id').val();
+                let area_id = $('#area_id').val();
+                if(area_id != '')
+                {
+                    $.ajax({
+                        headers : {
+                            'X-CSRF-TOKEN' : '{{csrf_token()}}'
+                        },
+
+                        url : '{{url('getFixedDepositMemebers')}}',
+
+                        type : 'POST',
+
+                        data : {branch_id,area_id},
+
+                        success : function(data)
+                        {
+                            $('#fixed_deposit_id').html(data);
                         }
                     });
                 }
