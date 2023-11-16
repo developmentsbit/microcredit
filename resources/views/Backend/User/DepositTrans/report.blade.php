@@ -58,8 +58,8 @@ use App\Traits\Date;
 <table>
     <thead>
     <tr>
-        <td colspan="3" style="text-align: center">
-            <h3>{{$data['members']->aplicant_name}}</h3>
+        <td colspan="4" style="text-align: center">
+            <h3>{{$data['deposit_id']}} - {{$data['members']->aplicant_name}}</h3>
             এর<br>
             ডিপোজিট লেনদেন তথ্য<br>
             {{ $data['from_date'] }} থেকে {{$data['to_date']}} পর্যন্ত
@@ -67,8 +67,9 @@ use App\Traits\Date;
     </tr>
     <tr>
         <th>তারিখ</th>
-        <th style="width : 10%;">টাকা</th>
-        <th style="width : 10%;">টাকা</th>
+        <th style="width : 10%;">জমা</th>
+        <th style="width : 10%;">ফেরত</th>
+        <th style="width : 10%;">লভ্যাংশ</th>
     </tr>
     @if($data['total_collection'])
     @foreach ($data['total_collection'] as $v)
@@ -79,6 +80,10 @@ use App\Traits\Date;
            {{Date::DbToOriginal('-',$v->collection_date)}}
            @if($v->return_profit > 0)
            (লভ্যাংশ প্রদান)
+           @elseif($v->deposit_ammount > 0)
+           (জমা)
+           @elseif($v->return_deposit > 0)
+           (ফেরত)
            @endif
 
            @endif
@@ -86,11 +91,18 @@ use App\Traits\Date;
         <td style="border: 0px;border-right:1px solid black;padding:3px;text-align:center">
             @if($v->deposit_ammount > 0){{$v->deposit_ammount}} @endif
         </td>
+        <td style="border: 0px;border-right:1px solid black;padding:3px;text-align:center">
+            @if($v->deposit_ammount == 0)
+            @if($v->return_deposit != 0)
+            {{$v->return_deposit}}
+            @endif
+            @endif
+        </td>
         <!-- returns -->
         <td style="border: 0px;border-right:1px solid black;padding:3px;text-align:center">
             @if($v->deposit_ammount == 0)
-            @if($v->return_deposit != 0 || $v->return_profit != 0)
-            {{$v->return_deposit ?: $v->return_profit}}
+            @if($v->return_profit != 0)
+            {{$v->return_profit}}
             @endif
             @endif
         </td>
@@ -103,7 +115,10 @@ use App\Traits\Date;
             <b><u>{{$data['total_deposit']}}</u></b>
         </td>
         <td style="text-align: center;">
-            <b><u>{{$data['total_return_profit']}}</u></b>
+            <b><u>{{$data['total_return']}}</u></b>
+        </td>
+        <td style="text-align: center;">
+            <b><u>{{$data['total_profit']}}</u></b>
         </td>
     </tr>
 </table>

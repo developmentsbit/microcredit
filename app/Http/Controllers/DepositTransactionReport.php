@@ -66,6 +66,8 @@ class DepositTransactionReport extends Controller
         $data['from_date'] = $request->from_date;
         $data['to_date'] = $request->to_date;
 
+        $data['deposit_id'] = $request->fixed_deposit_id;
+
         $data['total_collection'] = fixed_deposit_collection::where('member_id',$request->fixed_deposit_id)->where('approval',1)->whereBetween('collection_date',[$from_date,$to_date])->get();
 
         $data['members'] = fixed_deposit_registration::where('fixed_deposit_registrations.registration_id',$request->fixed_deposit_id)
@@ -75,10 +77,10 @@ class DepositTransactionReport extends Controller
 
        $data['total_deposit'] = fixed_deposit_collection::where('member_id',$request->fixed_deposit_id)->where('approval',1)->whereBetween('collection_date',[$from_date,$to_date])->sum('deposit_ammount');
 
-       $total_return= fixed_deposit_collection::where('member_id',$request->fixed_deposit_id)->where('approval',1)->whereBetween('collection_date',[$from_date,$to_date])->sum('return_deposit');
-        $total_profit = fixed_deposit_collection::where('member_id',$request->fixed_deposit_id)->where('approval',1)->whereBetween('collection_date',[$from_date,$to_date])->sum('return_profit');
+       $data['total_return']= fixed_deposit_collection::where('member_id',$request->fixed_deposit_id)->where('approval',1)->whereBetween('collection_date',[$from_date,$to_date])->sum('return_deposit');
+        $data['total_profit'] = fixed_deposit_collection::where('member_id',$request->fixed_deposit_id)->where('approval',1)->whereBetween('collection_date',[$from_date,$to_date])->sum('return_profit');
 
-        $data['total_return_profit'] = $total_return + $total_profit;
+        // $data['total_return_profit'] = $total_return + $total_profit;
 
 
         return view($this->path.'.report',compact('data'));
