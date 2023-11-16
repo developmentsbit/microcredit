@@ -39,34 +39,6 @@ $companyInfo = company_information::first();
             </div>
         </div>
         <!-- [ breadcrumb ] end -->
-        <!-- [ Main Header ] start -->
-        <div class="row">
-            <a class="box-link col-lg-12 col-md-12 col-12" href="#" style="padding: 17px 20px;">
-                <div class="row">
-                    <div class="col-sm-3 col-lg-3 mb-3 link-box">
-                        <p><b>Welcome back, SUPER ADMIN !</b></p>
-                        <span class="fs-semibold text-muted">Track your somity activity, leads and deals here.</span>
-                    </div>
-                    <div class="col-sm-3 col-lg-3 mb-3 link-box">
-                        <label>ব্রাঞ্চ নাম</label><span class="text-danger">*</span>
-                        <div class="input-group">
-                            <select class="js-example-basic-single form-control" required>
-                                <option>নির্বাচন করুন</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-3 col-lg-3 mb-3 link-box">
-                        <label>কেন্দ্র নাম</label><span class="text-danger">*</span>
-                        <div class="input-group">
-                            <select class="js-example-basic-single form-control" required>
-                                <option>নির্বাচন করুন</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <!-- [ Main Header ] end -->
 
         <div class="row col-lg-4 col-md-6 col-12">
             <a class="bg-danger box-link" href="#">
