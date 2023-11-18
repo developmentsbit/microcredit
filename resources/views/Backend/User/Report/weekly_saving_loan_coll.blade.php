@@ -13,7 +13,7 @@
                         <h5>সাপ্তাহিক সঞ্চয় ও ঋণ আদায়ের শীট</h5>
                     </div>
                     <div class="card-body">
-                        <form action="report/invest_collection.php" method="get">
+                        <form action="report/weekly_collection_sheet.php" method="get">
 
                             <div class="row">
 
@@ -73,7 +73,7 @@
                                 <div class="col-sm-2 mb-3">
                                     <label>বিনিয়োগ স্কিমা</label>
                                     <div class="input-group">
-                                        <select class="js-example-basic-single form-control @error('schema_id') is-invalid @enderror" name="invest_schema" id="invest_schema" required="">
+                                        <select class="js-example-basic-single form-control @error('schema_id') is-invalid @enderror" name="invest_schema" id="invest_schema" >
                                             <option value="">নির্বাচন করুন</option>
                                             @if ($invest_schema)
 

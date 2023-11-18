@@ -9,8 +9,10 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="bootstrap.min.css">
     <title>Collection Entry</title>
-
     <style>
+        *{
+            padding: 0px; margin:0px;
+        }
     body{
         font-family: 'Noto Serif Bengali', serif;
         font-size: 12px;
@@ -115,7 +117,7 @@
             }
             var investCollection="investCollection";
                     $.ajax({
-                      url:"invest_collection_form.php",
+                      url:"savings_invest_collection.php",
                       type:"POST",
                       data:{lower:lower,upper:upper,branch_id:branch_id,area_id:area_id,schema_id:schema_id,admin_id:admin_id,year:year,month:month,day:day,investCollection:investCollection},
                       cache:false,
@@ -126,62 +128,6 @@
                     });
         }
 
-function collectionAndreturnEntry()
-{
-
-      var form = $('form')[0];
-      var formData=new FormData(form);
-     
-      $('#btnsave').attr('disabled','disabled');
-
-       $.ajax({
-              url:"monthlyCollectionAndreturnEntry.php",
-              type:"POST",
-              data:formData,
-              contentType: false,
-              processData: false,
-              success:function(result){
-
-                $('#result').html(result);
-              // var r=parseInt(result);
-              // if(r==0)
-              // {
-              //   alert ("Unsuccessfully");
-              //   $('#btnsave').removeAttr('disabled');
-
-              // }
-              // else
-              // {
-              //    alert ("Successfully");
-              //   $('#btnsave').removeAttr('disabled');
-              // }
-                      
-
-              }
-          });
-
-
-}
-
-function calculatesavings(id,sl)
-{
-      var saving=0;
-      for(j=1; j<=sl; j++)
-      {
-          var savings = document.getElementById(id+'-'+j).value;
-          if(savings!="")
-          {
-             saving=parseInt(saving)+parseInt(savings);
-          }
-         
-
-      }
-          document.getElementById('total-'+id).value=saving;
-      //alert(saving);
-     // alert(id);
-     // alert(sl);
-       
-}
 
 function calculateinvest(id,sl)
 {
@@ -212,13 +158,13 @@ function calculateinvest(id,sl)
             <td style="width:10%" align="right"></td>
             <td align="center">
                 <label style="widtd:150px;">
-                    <img src="logo.png"  style="max-height: 100px;max-widtd: 120px; float: left; clear: right;"></label>
+                    <img src="logo.png"  style="max-height: 60px;max-widtd: 60px; float: left; clear: right;"></label>
                 <label> 
-                    <span style="font-size:30px; "> শ্যামল ছায়া সমাজকল্যাণ সংস্থা</span><br>
-                    <span style="font-size:16px; ">আতা, মাদ্রা, নেছারাবাদ, পিরোজপুর ।<br>
+                    <span style="font-size:20px; "> শ্যামল ছায়া সমাজকল্যাণ সংস্থা</span><br>
+                    <span style="font-size:14px; ">আতা, মাদ্রা, নেছারাবাদ, পিরোজপুর ।<br>
                         scsks2016@gmail.com, Phone-01721653785, 01880668788</span><br>
 
-                        <b style="font-size:18px; margin-bottom: 5px; ">সাপ্তাহিক সঞ্চয় ও ঋণ আদায় </b><br>
+                        <b style="font-size:14px; margin-bottom: 5px; ">সাপ্তাহিক সঞ্চয় ও ঋণ আদায় </b><br>
                 </label>
 
             </td>
@@ -228,28 +174,21 @@ function calculateinvest(id,sl)
 
 <form method="post" id="form" name="form" enctype="multipart/form-data">
 
-<input type="hidden" name="branch_id" value="<?php print $_GET['branch_id'];?>">
-<input type="hidden" name="area_id" value="<?php print $_GET['area_id'];?>">
-<input type="hidden" name="schema_id" value="<?php print $_GET['schema_id'];?>">
-<input type="hidden" name="admin_id" value="<?php print $_GET['admin_id'];?>">
-
-   <table  cellpadding="0" cellspacing="0" style=" width: 100%;" >
-
-
+   <table  cellpadding="0" cellspacing="0" style=" width: 100%; margin-top:2px;" >
           <tr>
               <td></td>
-              <td align="center"> <br><label><input type="text" name="lower" class="form-control" id="lower" value="0" ></label>
-              <label><input type="text" name="upper" class="form-control" id="upper" value="10"></label>
+              <td align="center"> <label><input type="text" name="lower" class="form-control" id="lower" value="0" style="width: 100px;"></label>
+              <label><input type="text" name="upper" class="form-control" id="upper" value="10" style="width: 100px;"></label>
               <label><input type="button" name="show" class="btn btn-success" value="Show" onclick="return investCollectIonfun(),sl_update()"></label></td>
               <td></td>
           </tr>
 
             <tr>
-                <td colspan="3" id="sms" style="background: #f4f4f4;"></td>
+                <td colspan="3" id="sms"></td>
             </tr>
 
             <tr>
-                <td colspan="3" id="result" style="background: #f4f4f4;"></td>
+                <td colspan="3" id="result" ></td>
             </tr>
     </table>
   </form>

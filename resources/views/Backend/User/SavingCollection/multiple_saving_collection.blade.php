@@ -73,7 +73,7 @@
                                 <div class="col-sm-2 mb-3">
                                     <label>বিনিয়োগ স্কিমা</label>
                                     <div class="input-group">
-                                        <select class="js-example-basic-single form-control @error('schema_id') is-invalid @enderror" name="invest_schema" id="invest_schema" required="">
+                                        <select class="js-example-basic-single form-control @error('schema_id') is-invalid @enderror" name="invest_schema" id="invest_schema">
                                             <option value="">নির্বাচন করুন</option>
                                             @if ($invest_schema)
 
