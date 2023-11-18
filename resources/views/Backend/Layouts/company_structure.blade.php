@@ -15,6 +15,13 @@ a.box-link:hover {
     background: #e3e0e0;
 }
 </style>
+
+@php
+Use App\Models\admin_branch_info;
+Use App\Models\branch_info;
+
+@endphp
+
 <!-- [ Main Content ] start -->
 <div class="pcoded-main-container">
     <div class="pcoded-content">
@@ -27,7 +34,7 @@ a.box-link:hover {
                         <span class="fs-semibold text-muted">Track your somity activity, leads and deals here.</span>
                     </div>
                     <div class="col-sm-3 col-lg-3 mb-3 link-box">
-                        <label>ব্রাঞ্চ নাম</label><span class="text-danger">*</span>
+                        <label>ব্রাঞ্চ নাম <span class="text-danger">*</span></label>
                         <div class="input-group">
                             <select class="js-example-basic-single form-control @error('branch_id') is-invalid @enderror" name="branch_id" required="" id="branch_id" onchange="loadMember()">
                                 <option value="">নির্বাচন করুন</option>
@@ -56,14 +63,23 @@ a.box-link:hover {
 
                             </select>
                         </div>
+                        @error('branch_id')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
+                    
                     <div class="col-sm-3 col-lg-3 mb-3 link-box">
-                        <label>কেন্দ্র নাম</label><span class="text-danger">*</span>
+                        <label>মেম্বার নাম <span class="text-danger">*</span></label>
                         <div class="input-group">
-                            <select class="js-example-basic-single form-control" required>
-                                <option>নির্বাচন করুন</option>
+
+                            <select class="js-example-basic-single form-control @error('employee_id') is-invalid @enderror" name="employee_id" id="employee_id" required="">
+                                <option value="">নির্বাচন করুন</option>
+
                             </select>
                         </div>
+                        @error('employee_id')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="col-sm-3 col-lg-3 link-box" style="padding: 31px 75px;">
                         <button type="button" class="btn btn-secondary" onClick="window.location.reload();">Reload Dashboard</button>
@@ -425,76 +441,31 @@ a.box-link:hover {
             </div>
         </div>
 
-        <script type="text/javascript">
-            function loadArea()
-            {
-                var branch_id = $('#branch_id').val();
+ <!-- [ Main Content ] end -->
+ <script type="text/javascript">
+		function loadMember()
+		{
+			var branch_id = $('#branch_id').val();
 
-                // var default = "<option value=''>নির্বাচন করুন</option>";
+			$.ajax({
+				headers : {
+					'X-CSRF-TOKEN' : '{{ csrf_token() }}'
+				},
 
-                // alert(branch_id);
-                if(branch_id == "")
-                {
-                    $('#area_id').html("");
-                }
-                else
-                {
-                    $.ajax({
-                        headers : {
-                            'X-CSRF-TOKEN' : '{{ csrf_token() }}'
-                        },
+				url : '{{ url('getloadMember') }}',
 
-                        url : '{{ url('loadArea') }}',
+				type : 'POST',
 
-                        type : 'POST',
+				data : {branch_id},
 
-                        data : {branch_id},
-
-                        success : function(data)
-                        {
-                            $('#area_id').html(data);
+				success : function(data)
+				{
+					$('#employee_id').html(data);
                             // alert(data);
                         }
                     });
-                }
-            }
-        </script>
 
-
-        <script>
-            function loadMember()
-            {
-                var area_id = $('#area_id').val();
-                // alert(area_id);
-                var branch_id = $('#branch_id').val();
-                // alert(branch_id);
-                if(area_id == "")
-                {
-
-                }
-                else
-                {
-                    $.ajax({
-
-                        headers : {
-                            'X-CSRF-TOKEN' : '{{ csrf_token() }}'
-                        },
-
-                        url : '{{ url('loadMember') }}',
-
-                        type : 'POST',
-
-                        data : {area_id,branch_id},
-
-                        success : function(data)
-                        {
-                            $('#member_id').html(data);
-                            // alert(data);
-                        }
-
-                    });
-                }
-            }
-        </script>
+		}
+	</script>
 
 @endsection
