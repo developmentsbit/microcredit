@@ -26,7 +26,7 @@ Use App\Models\branch_info;
 <div class="pcoded-main-container">
     <div class="pcoded-content">
         <!-- [ Main Header ] start -->
-        <div class="row">
+        {{-- <div class="row">
             <a class="box-link col-lg-12 col-md-12 col-12" href="#" style="padding: 17px 20px;">
                 <div class="row">
                     <div class="col-sm-3 col-lg-3 mb-3 link-box">
@@ -38,7 +38,7 @@ Use App\Models\branch_info;
                         <div class="input-group">
                             <select class="js-example-basic-single form-control @error('branch_id') is-invalid @enderror" name="branch_id" required="" id="branch_id" onchange="loadMember()">
                                 <option value="">নির্বাচন করুন</option>
-                                @php 
+                                @php
                                 if(Auth::user()->user_role == 1)
                                 {
                                     $admin_branch = branch_info::where('status',1)->get();
@@ -67,7 +67,7 @@ Use App\Models\branch_info;
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    
+
                     <div class="col-sm-3 col-lg-3 mb-3 link-box">
                         <label>মেম্বার নাম <span class="text-danger">*</span></label>
                         <div class="input-group">
@@ -86,7 +86,7 @@ Use App\Models\branch_info;
                     </div>
                 </div>
             </a>
-        </div>
+        </div> --}}
         <!-- [ Main Header ] end -->
 
         <!-- [ Main Content ] start -->
@@ -230,209 +230,244 @@ Use App\Models\branch_info;
             <!-- Widget primary-success card start -->
             <!-- Widget primary-success card end -->
 
-        {{-- yearly --}}
-        <div class="row mt-4">
-            <div class="col-md-12 col-xl-4">
-                <div class="card flat-card">
-                    <div class="row-table">
-                        <div class="col-sm-6 card-body br">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="row">
-                                        <div class="col-12 text-center">
-                                            <b>মোট ঋণ আদায়</b>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 text-md-center pt-2">
-                                    <h5>{{$grandtotals['loan_recived']}} /-</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 card-body br">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="row">
-                                        <div class="col-12 text-center">
-                                            <b>মোট ঋণ প্রদান</b>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 text-md-center pt-2">
-                                    <h5>{{$grandtotals['loan_provide']}} /-</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="form-group row">
+            <div class="col-lg-4 col-md-4 col-12">
+                <select class="form-control js-example-basic-single" name="branch_id" id="branch_id" onchange="loadArea()">
+                    <option value="">---- ব্রাঞ্চ নির্বাচন করুন ----</option>
+                    @php
+                    if(Auth::user()->user_role == 1)
+                    {
+                        $admin_branch = branch_info::where('status',1)->get();
+                    }
+                    else {
+
+                        $admin_branch = admin_branch_info::where('admin_branch_infos.admin_id',Auth::user()->id)
+                        ->join('branch_infos','branch_infos.id','=','admin_branch_infos.branch_id')
+                        ->select('branch_infos.*')
+                        ->get();
+                    }
+                    @endphp
+                    @if($admin_branch)
+                    @foreach($admin_branch as $showbranch)
+                    <option value="{{ $showbranch->id }}">{{ $showbranch->branch_name }}</option>
+                    @endforeach
+                    @endif
+                </select>
             </div>
-            <div class="col-md-12 col-xl-4">
-                <div class="card flat-card">
-                    <div class="row-table">
-                        <div class="col-sm-6 card-body br">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="row">
-                                        <div class="col-12 text-center">
-                                            <b>মোট সঞ্চয় আদায়</b>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 text-md-center pt-2">
-                                    <h5>{{$grandtotals['saving_collection']}} /-</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 card-body br">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="row">
-                                        <div class="col-12 text-center">
-                                            <b>মোট সঞ্চয় ফেরত</b>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 text-md-center pt-2">
-                                    <h5>{{$grandtotals['saving_provide']}} /-</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12 col-xl-4">
-                <div class="card flat-card">
-                    <div class="row-table">
-                        <div class="col-sm-6 card-body br">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="row">
-                                        <div class="col-12 text-center">
-                                            <b>মোট ডিপোজিট আদায়</b>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 text-md-center pt-2">
-                                    <h5>{{$grandtotals['deposit_collection']}} /-</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 card-body br">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="row">
-                                        <div class="col-12 text-center">
-                                            <b>মোট ডিপোজিট ফেরত</b>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 text-md-center pt-2">
-                                    <h5>{{$grandtotals['deposit_provide']}} /-</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-lg-4 col-md-4 col-12">
+                <select class="form-control js-example-basic-single" name="area_id" id="area_id" onchange="loadAreaData()">
+
+                </select>
             </div>
         </div>
-        {{-- daily --}}
-        <div class="row mt-4">
-            <div class="col-md-12 col-xl-4">
-                <div class="card flat-card">
-                    <div class="row-table">
-                        <div class="col-sm-6 card-body br">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="row">
-                                        <div class="col-12 text-center">
-                                            <b>আজকের ঋণ আদায়</b>
+
+
+        {{-- yearly --}}
+        <div class="showAreaData">
+
+            <div class="row mt-4">
+                <div class="col-md-12 col-xl-4">
+                    <div class="card flat-card">
+                        <div class="row-table">
+                            <div class="col-sm-6 card-body br">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            <div class="col-12 text-center">
+                                                <b>মোট ঋণ আদায়</b>
+                                            </div>
                                         </div>
                                     </div>
+                                    <div class="col-sm-12 text-md-center pt-2">
+                                        <h5>{{$grandtotals['loan_recived']}} /-</h5>
+                                    </div>
                                 </div>
-                                <div class="col-sm-12 text-md-center pt-2">
-                                    <h5>{{$totals['total_loan_recived']}} /-</h5>
+                            </div>
+                            <div class="col-sm-6 card-body br">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            <div class="col-12 text-center">
+                                                <b>মোট ঋণ প্রদান</b>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 text-md-center pt-2">
+                                        <h5>{{$grandtotals['loan_provide']}} /-</h5>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 card-body br">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="row">
-                                        <div class="col-12 text-center">
-                                            <b>আজকের ঋণ প্রদান</b>
+                    </div>
+                </div>
+                <div class="col-md-12 col-xl-4">
+                    <div class="card flat-card">
+                        <div class="row-table">
+                            <div class="col-sm-6 card-body br">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            <div class="col-12 text-center">
+                                                <b>মোট সঞ্চয় আদায়</b>
+                                            </div>
                                         </div>
                                     </div>
+                                    <div class="col-sm-12 text-md-center pt-2">
+                                        <h5>{{$grandtotals['saving_collection']}} /-</h5>
+                                    </div>
                                 </div>
-                                <div class="col-sm-12 text-md-center pt-2">
-                                    <h5>{{$totals['total_loan_provide']}} /-</h5>
+                            </div>
+                            <div class="col-sm-6 card-body br">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            <div class="col-12 text-center">
+                                                <b>মোট সঞ্চয় ফেরত</b>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 text-md-center pt-2">
+                                        <h5>{{$grandtotals['saving_provide']}} /-</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-xl-4">
+                    <div class="card flat-card">
+                        <div class="row-table">
+                            <div class="col-sm-6 card-body br">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            <div class="col-12 text-center">
+                                                <b>মোট ডিপোজিট আদায়</b>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 text-md-center pt-2">
+                                        <h5>{{$grandtotals['deposit_collection']}} /-</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 card-body br">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            <div class="col-12 text-center">
+                                                <b>মোট ডিপোজিট ফেরত</b>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 text-md-center pt-2">
+                                        <h5>{{$grandtotals['deposit_provide']}} /-</h5>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-12 col-xl-4">
-                <div class="card flat-card">
-                    <div class="row-table">
-                        <div class="col-sm-6 card-body br">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="row">
-                                        <div class="col-12 text-center">
-                                            <b>আজকের সঞ্চয় আদায়</b>
+            {{-- daily --}}
+            <div class="row mt-4">
+                <div class="col-md-12 col-xl-4">
+                    <div class="card flat-card">
+                        <div class="row-table">
+                            <div class="col-sm-6 card-body br">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            <div class="col-12 text-center">
+                                                <b>আজকের ঋণ আদায়</b>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-12 text-md-center pt-2">
-                                    <h5>{{$totals['total_saving_collection']}} /-</h5>
+                                    <div class="col-sm-12 text-md-center pt-2">
+                                        <h5>{{$totals['total_loan_recived']}} /-</h5>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-sm-6 card-body br">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="row">
-                                        <div class="col-12 text-center">
-                                            <b>আজকের সঞ্চয় ফেরত</b>
+                            <div class="col-sm-6 card-body br">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            <div class="col-12 text-center">
+                                                <b>আজকের ঋণ প্রদান</b>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-12 text-md-center pt-2">
-                                    <h5>{{$totals['total_saving_provide']}} /-</h5>
+                                    <div class="col-sm-12 text-md-center pt-2">
+                                        <h5>{{$totals['total_loan_provide']}} /-</h5>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-12 col-xl-4">
-                <div class="card flat-card">
-                    <div class="row-table">
-                        <div class="col-sm-6 card-body br">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="row">
-                                        <div class="col-12 text-center">
-                                            <b>আজকের ডিপোজিট ফেরত</b>
+                <div class="col-md-12 col-xl-4">
+                    <div class="card flat-card">
+                        <div class="row-table">
+                            <div class="col-sm-6 card-body br">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            <div class="col-12 text-center">
+                                                <b>আজকের সঞ্চয় আদায়</b>
+                                            </div>
                                         </div>
                                     </div>
+                                    <div class="col-sm-12 text-md-center pt-2">
+                                        <h5>{{$totals['total_saving_collection']}} /-</h5>
+                                    </div>
                                 </div>
-                                <div class="col-sm-12 text-md-center pt-2">
-                                    <h5>{{$totals['total_deposit_collection']}} /-</h5>
+                            </div>
+                            <div class="col-sm-6 card-body br">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            <div class="col-12 text-center">
+                                                <b>আজকের সঞ্চয় ফেরত</b>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 text-md-center pt-2">
+                                        <h5>{{$totals['total_saving_provide']}} /-</h5>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 card-body br">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="row">
-                                        <div class="col-12 text-center">
-                                            <b>আজকের ডিপোজিট প্রদান</b>
+                    </div>
+                </div>
+                <div class="col-md-12 col-xl-4">
+                    <div class="card flat-card">
+                        <div class="row-table">
+                            <div class="col-sm-6 card-body br">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            <div class="col-12 text-center">
+                                                <b>আজকের ডিপোজিট ফেরত</b>
+                                            </div>
                                         </div>
                                     </div>
+                                    <div class="col-sm-12 text-md-center pt-2">
+                                        <h5>{{$totals['total_deposit_collection']}} /-</h5>
+                                    </div>
                                 </div>
-                                <div class="col-sm-12 text-md-center pt-2">
-                                    <h5>{{$totals['total_deposit_provide']}} /-</h5>
+                            </div>
+                            <div class="col-sm-6 card-body br">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            <div class="col-12 text-center">
+                                                <b>আজকের ডিপোজিট প্রদান</b>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 text-md-center pt-2">
+                                        <h5>{{$totals['total_deposit_provide']}} /-</h5>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -446,6 +481,7 @@ Use App\Models\branch_info;
 		function loadMember()
 		{
 			var branch_id = $('#branch_id').val();
+
 
 			$.ajax({
 				headers : {
@@ -467,5 +503,71 @@ Use App\Models\branch_info;
 
 		}
 	</script>
+
+<script type="text/javascript">
+    function loadArea()
+    {
+        var branch_id = $('#branch_id').val();
+        // var default = "<option value=''>নির্বাচন করুন</option>";
+
+        // alert(branch_id);
+        if(branch_id == "")
+        {
+            $('#area_id').html("");
+        }
+        else
+        {
+            $.ajax({
+                headers : {
+                    'X-CSRF-TOKEN' : '{{ csrf_token() }}'
+                },
+
+                url : '{{ url('loadArea') }}',
+
+                type : 'POST',
+
+                data : {branch_id},
+
+                success : function(data)
+                {
+                    $('#area_id').html(data);
+                    // alert(data);
+                }
+            });
+        }
+    }
+</script>
+
+<script type="text/javascript">
+    function loadAreaData()
+    {
+        let branch_id = $('#branch_id').val();
+        let area_id = $('#area_id').val();
+        var loading = '<img src="/Backend/images/loading.gif" style="height:100px;width:100px;">';
+        if(area_id != "")
+        {
+            $.ajax({
+                headers : {
+                    'X-CSRF-TOKEN' : '{{ csrf_token() }}'
+                },
+
+                url : '{{url('loadAreaData')}}',
+
+                type : 'POST',
+
+                data : {branch_id,area_id},
+
+                beforeSend : function(data)
+                {
+                    $('.showAreaData').html(loading);
+                },
+                success : function(data)
+                {
+                    $('.showAreaData').html(data);
+                }
+            })
+        }
+    }
+</script>
 
 @endsection

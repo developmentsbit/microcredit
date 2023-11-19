@@ -38,6 +38,20 @@
         width: 50%;
         float: left;
     }
+    @page {
+        background: white;
+        size: 210mm 297mm;
+        /* Chrome sets own margins, we change these printer settings */
+        margin: 27mm 16mm 27mm 16mm;
+        transform: scale(.7);
+    }
+    @media print {
+    html, body {
+        width: 210mm;
+        height: 297mm;
+    }
+    /* ... the rest of the rules ... */
+    }
     @media print{
         .print{
             display:none;

@@ -87,6 +87,9 @@ Route::get('/check_lost_letter',[BackendController::class,'check_lost_letter']);
 Route::get('/member_reg_form',[BackendController::class,'member_reg_form']);
 Route::get('/saving_reg_form',[BackendController::class,'saving_reg_form']);
 
+
+Route::post('loadAreaData',[BackendController::class,'loadAreaData']);
+
 // Route::get('/dashboard/{branch_name}/{id}', [App\Http\Controllers\BackendController::class, 'branch_dashboard']);
 Route::post('/loadEmployee',[BackendController::class,'loadEmployee']);
 Route::post('/loadBrnahcMenu',[BackendController::class,'loadBrnahcMenu']);
