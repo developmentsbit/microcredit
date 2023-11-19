@@ -93,6 +93,7 @@ Route::post('/loadBrnahcMenu',[BackendController::class,'loadBrnahcMenu']);
 Route::post('/check_pass',[BackendController::class,'check_pass']);
 Route::post('/change_password',[BackendController::class,'change_password']);
 Route::post('/loadArea',[BackendController::class,'loadArea']);
+Route::post('/loadWeeklyArea',[BackendController::class,'loadWeeklyArea']);
 Route::post('/loadMember',[BackendController::class,'loadMember']);
 Route::post('/loadInvestorMembers',[BackendController::class,'loadInvestorMembers']);
 Route::post('/loadInvestorMembers2',[BackendController::class,'loadInvestorMembers2']);

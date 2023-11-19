@@ -193,7 +193,7 @@
                             'X-CSRF-TOKEN' : '{{ csrf_token() }}'
                         },
 
-                        url : '{{ url('loadArea') }}',
+                        url : '{{ url('loadWeeklyArea') }}',
 
                         type : 'POST',
 
