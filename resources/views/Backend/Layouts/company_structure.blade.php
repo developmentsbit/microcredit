@@ -232,7 +232,7 @@ Use App\Models\branch_info;
 
         <div class="form-group row">
             <div class="col-lg-4 col-md-4 col-12">
-                <select class="form-control js-example-basic-single" name="branch_id" id="branch_id" onchange="loadArea()">
+                <select class="form-control js-example-basic-single" name="branch_id" id="branch_id" onchange="loadArea();loadBranchData()">
                     <option value="">---- ব্রাঞ্চ নির্বাচন করুন ----</option>
                     @php
                     if(Auth::user()->user_role == 1)
@@ -556,6 +556,36 @@ Use App\Models\branch_info;
                 type : 'POST',
 
                 data : {branch_id,area_id},
+
+                beforeSend : function(data)
+                {
+                    $('.showAreaData').html(loading);
+                },
+                success : function(data)
+                {
+                    $('.showAreaData').html(data);
+                }
+            })
+        }
+    }
+</script>
+<script type="text/javascript">
+    function loadBranchData()
+    {
+        let branch_id = $('#branch_id').val();
+        var loading = '<img src="/Backend/images/loading.gif" style="height:100px;width:100px;">';
+        if(area_id != "")
+        {
+            $.ajax({
+                headers : {
+                    'X-CSRF-TOKEN' : '{{ csrf_token() }}'
+                },
+
+                url : '{{url('loadBranchData')}}',
+
+                type : 'POST',
+
+                data : {branch_id},
 
                 beforeSend : function(data)
                 {

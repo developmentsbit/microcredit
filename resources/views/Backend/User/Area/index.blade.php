@@ -42,6 +42,7 @@
                                     <th>সিরিয়াল নং</th>
                                     <th>ব্রাঞ্চ নাম</th>
                                     <th>কেন্দ্র নাম</th>
+                                    <th>টাইপ</th>
                                     <th>স্ট্যাটাস</th>
                                     <th>অ্যাকশান</th>
                                 </tr>
@@ -53,6 +54,17 @@
                                     <td>{{$showdata->sl}}</td>
                                     <td>{{$showdata->branch_name}}</td>
                                     <td>{{$showdata->area_name}}</td>
+                                    <td>
+                                        @if($showdata->type == 'daily')
+                                        দৈনিক
+                                        @elseif($showdata->type == 'weekly')
+                                        সাপ্তাহিক ({{$showdata->day}})
+                                        @elseif($showdata->type  == 'monthly')
+                                        মাসিক
+                                        @elseif($showdata->type == 'yearly')
+                                        বার্ষিক
+                                        @endif
+                                    </td>
                                     <td>
                                         @if($showdata->status == 1)
                                         <div class="badge badge-success">Active</div>

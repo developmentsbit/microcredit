@@ -725,6 +725,33 @@ class BackendController extends Controller
 
         //total_loan_recived
         $totals = [];
+        $totals['total_loan_recived'] = investment_collection::where('date',date('Y-m-d'))->where('approval',1)->where('branch_id',$request->branch_id)->sum('investment_collection');
+        $totals['total_loan_provide'] = investment_handover::where('date',date('Y-m-d'))->where('approval',1)->where('branch_id',$request->branch_id)->sum('investment_amount');
+        //saving
+        $totals['total_saving_collection'] = saving_transaction::where('date',date('Y-m-d'))->where('approval',1)->where('branch_id',$request->branch_id)->sum('deposit_ammount');
+        $totals['total_saving_provide'] = saving_transaction::where('date',date('Y-m-d'))->where('approval',1)->where('branch_id',$request->branch_id)->sum('return_ammount');
+        //deposit
+        $totals['total_deposit_collection'] = fixed_deposit_collection::where('collection_date',date('Y-m-d'))->where('approval',1)->where('branch_id',$request->branch_id)->sum('deposit_ammount');
+        $totals['total_deposit_provide'] = fixed_deposit_return::where('return_date',date('Y-m-d'))->where('approval',1)->where('branch_id',$request->branch_id)->sum('deposit_return_ammount');
+
+        return view('Backend.Layouts.branch_data',compact('grandtotals','totals'));
+
+    }
+    public function loadBranchData(Request $request)
+    {
+        $grandtotals = [];
+        //loan_recived
+        $grandtotals['loan_recived'] = investment_collection::where('approval',1)->where('branch_id',$request->branch_id)->where('area_id',$request->area_id)->sum('investment_collection');
+        $grandtotals['loan_provide'] = investment_handover::where('approval',1)->where('branch_id',$request->branch_id)->where('area_id',$request->area_id)->sum('investment_amount');
+        //saving
+        $grandtotals['saving_collection'] = saving_transaction::where('approval',1)->where('branch_id',$request->branch_id)->where('area_id',$request->area_id)->sum('deposit_ammount');
+        $grandtotals['saving_provide'] = saving_transaction::where('approval',1)->where('branch_id',$request->branch_id)->where('area_id',$request->area_id)->sum('return_ammount');
+        //deposit
+        $grandtotals['deposit_collection'] = fixed_deposit_collection::where('approval',1)->where('branch_id',$request->branch_id)->where('area_id',$request->area_id)->sum('deposit_ammount');
+        $grandtotals['deposit_provide']= fixed_deposit_return::where('approval',1)->where('branch_id',$request->branch_id)->where('area_id',$request->area_id)->sum('deposit_return_ammount');
+
+        //total_loan_recived
+        $totals = [];
         $totals['total_loan_recived'] = investment_collection::where('date',date('Y-m-d'))->where('approval',1)->where('branch_id',$request->branch_id)->where('area_id',$request->area_id)->sum('investment_collection');
         $totals['total_loan_provide'] = investment_handover::where('date',date('Y-m-d'))->where('approval',1)->where('branch_id',$request->branch_id)->where('area_id',$request->area_id)->sum('investment_amount');
         //saving
