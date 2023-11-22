@@ -86,7 +86,16 @@
                                 <div class="col-sm-6 mb-3 @if($data->type != 'weekly') d-none @endif" id="day">
                                     <label>দিন</label><span class="text-danger">*</span>
                                     <div class="input-group">
-                                        <input type="text" class="form-control form-control-sm @error('day') is-invalid @enderror" aria-describedby="inputGroupPrepend" name="day" value="{{$data->day}}" required>
+                                        <select class="form-control form-control-sm @error('day') is-invalid @enderror" name="day" onchange="showDay()" id="day" required>
+                                            <option value="NULL">-- নির্বাচন করুন --</option>
+                                            <option @if($data->day == 'sat') selected @endif value="sat">শনিবার</option>
+                                            <option @if($data->day == 'sun') selected @endif value="sun">রবিবার</option>
+                                            <option @if($data->day == 'mon') selected @endif value="mon">সোমবার</option>
+                                            <option @if($data->day == 'tue') selected @endif value="tue">মঙ্গলবার</option>
+                                            <option @if($data->day == 'wed') selected @endif value="wed">বুধবার</option>
+                                            <option @if($data->day == 'thu') selected @endif value="thu">বৃহস্পতিবার</option>
+                                            <option @if($data->day == 'fri') selected @endif value="fri">শুক্রবার</option>
+                                        </select>
                                     </div>
                                     @error('day')
                                         <div class="alert alert-danger">{{ $message }}</div>

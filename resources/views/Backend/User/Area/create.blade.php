@@ -85,9 +85,16 @@
 
                                 <div class="col-sm-6 mb-3 d-none" id="day">
                                     <label>দিন</label><span class="text-danger">*</span>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control form-control-sm @error('day') is-invalid @enderror" aria-describedby="inputGroupPrepend" name="day" value="{{old('day')}}" required>
-                                    </div>
+                                    <select class="form-control form-control-sm @error('day') is-invalid @enderror" name="day" onchange="showDay()" id="day" required>
+                                        <option value="NULL">-- নির্বাচন করুন --</option>
+                                        <option value="sat">শনিবার</option>
+                                        <option value="sun">রবিবার</option>
+                                        <option value="mon">সোমবার</option>
+                                        <option value="tue">মঙ্গলবার</option>
+                                        <option value="wed">বুধবার</option>
+                                        <option value="thu">বৃহস্পতিবার</option>
+                                        <option value="fri">শুক্রবার</option>
+                                    </select>
                                     @error('day')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
