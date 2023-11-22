@@ -10,9 +10,9 @@ app/storage/
 # Laravel 5 & Lumen specific
 public/storage
 public/hot
-
+report/db_connect.php
 # Laravel 5 & Lumen specific with changed public path
-public_html/storage
+public_html/storagere
 public_html/hot
 
 storage/*.key

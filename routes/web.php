@@ -87,12 +87,18 @@ Route::get('/check_lost_letter',[BackendController::class,'check_lost_letter']);
 Route::get('/member_reg_form',[BackendController::class,'member_reg_form']);
 Route::get('/saving_reg_form',[BackendController::class,'saving_reg_form']);
 
+
+Route::post('loadAreaData',[BackendController::class,'loadAreaData']);
+Route::post('loadBranchData',[BackendController::class,'loadBranchData']);
+
 // Route::get('/dashboard/{branch_name}/{id}', [App\Http\Controllers\BackendController::class, 'branch_dashboard']);
 Route::post('/loadEmployee',[BackendController::class,'loadEmployee']);
 Route::post('/loadBrnahcMenu',[BackendController::class,'loadBrnahcMenu']);
 Route::post('/check_pass',[BackendController::class,'check_pass']);
 Route::post('/change_password',[BackendController::class,'change_password']);
 Route::post('/loadArea',[BackendController::class,'loadArea']);
+Route::post('/loadWeeklyArea',[BackendController::class,'loadWeeklyArea']);
+Route::post('/loadWeeklyDayArea',[BackendController::class,'loadWeeklyDayArea']);
 Route::post('/loadMember',[BackendController::class,'loadMember']);
 Route::post('/loadInvestorMembers',[BackendController::class,'loadInvestorMembers']);
 Route::post('/loadInvestorMembers2',[BackendController::class,'loadInvestorMembers2']);
@@ -508,16 +514,12 @@ Route::resources([
     'add_asset_categorey'=>AssetCategorey::class,
     'add_asset_expense'=>AssetExpense::class,
     'add_asset_depreciation'=>AssetDepreciation::class,
-
-
-
-
-
 ]);
 
 Route::get('deposit_transaction',[DepositTransactionReport::class,'index']);
 Route::post('getFixedDepositMemebers',[DepositTransactionReport::class,'getFixedDepositMemebers']);
-Route::get('depositTransactionReport',[DepositTransactionReport::class,'depositTransactionReport']);
+Route::get('depositTransactionReport
+',[DepositTransactionReport::class,'depositTransactionReport']);
 
 Route::get('create_cash_close',[CashCloseController::class,'create_cash_close']);
 Route::post('getLastCashClose',[CashCloseController::class,'getLastCashClose']);

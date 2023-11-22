@@ -68,6 +68,39 @@
                                     @enderror
                                 </div>
                                 <div class="col-sm-6 mb-3">
+                                    <label>টাইপ</label><span class="text-danger">*</span>
+                                    <div class="input-group">
+                                        <select class="form-control form-control-sm @error('type') is-invalid @enderror" name="type" onchange="showDay()" id="type">
+                                            <option value="">-- নির্বাচন করুন --</option>
+                                            <option @if(old('type') == 'daily') selected @endif value="daily">দৈনিক</option>
+                                            <option @if(old('type') == 'weekly') selected @endif value="weekly">সাপ্তাহিক</option>
+                                            <option @if(old('type') == 'monthly') selected @endif value="monthly">মাসিক</option>
+                                            <option @if(old('type') == 'yearly') selected @endif value="yearly">বার্ষিক</option>
+                                        </select>
+                                    </div>
+                                    @error('type')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="col-sm-6 mb-3 d-none" id="day">
+                                    <label>দিন</label><span class="text-danger">*</span>
+                                    <select class="form-control form-control-sm @error('day') is-invalid @enderror" name="day" onchange="showDay()" id="day" required>
+                                        <option value="NULL">-- নির্বাচন করুন --</option>
+                                        <option value="sat">শনিবার</option>
+                                        <option value="sun">রবিবার</option>
+                                        <option value="mon">সোমবার</option>
+                                        <option value="tue">মঙ্গলবার</option>
+                                        <option value="wed">বুধবার</option>
+                                        <option value="thu">বৃহস্পতিবার</option>
+                                        <option value="fri">শুক্রবার</option>
+                                    </select>
+                                    @error('day')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="col-sm-6 mb-3">
                                     <label>স্ট্যাটাস</label><span class="text-danger">*</span>
                                     <div class="input-group">
                                         <select class="form-control form-control-sm @error('status') is-invalid @enderror" name="status">
@@ -93,4 +126,21 @@
             <!-- Latest Customers end -->
         </div>
         <!-- [ Main Content ] end -->
+
+<script>
+    function showDay()
+    {
+        let type = $('#type').val();
+        // alert(type);
+        if(type == 'weekly')
+        {
+            $('#day').removeClass('d-none');
+        }
+        else
+        {
+            $('#day').addClass('d-none');
+        }
+    }
+</script>
+
 @endsection

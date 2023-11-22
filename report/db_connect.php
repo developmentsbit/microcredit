@@ -3,7 +3,7 @@ class database {
 
     public $servername="localhost";
 	public $username="shamalchaya_admin";
-	public $pass="Bangla%desh&20233";
+	public $pass="Bangla%desh&2023";
 	public $db_name="shamalchaya_database";
 // 	public $username="root";
 // 	public $pass="";
@@ -26,6 +26,20 @@ class database {
 			echo $this->eror="connection failed";
 		}
 	}
+
+
+
+	public function getday($y, $m, $d) {
+    return new DatePeriod(
+        new DateTime("first $d of $y-$m"),
+        DateInterval::createFromDateString('next '.$d),
+        new DateTime("last day of $y-$m")
+    );
+}
+
+// foreach ($db->getday($y, $m, $d) as $day) {
+// 	echo $day->format("d-m-Y");
+// }
 
 	public function my_money_format($num){
     $money=explode('.',$num);
@@ -95,6 +109,45 @@ public function month_name($month)
 	return 'ডিসেম্বর';
 
 }
+
+
+ function numberSystem($x)
+        {
+            switch($x){
+
+                        case"0":return"০";
+                        case"1":return"০১";
+                        case"2":return"০২";
+                        case"3":return"০৩";
+                        case"4":return"০৪";
+                        case"5":return"০৫";
+                        case"6":return"০৬";
+                        case"7":return"০৭";
+                        case"8":return"০৮";
+                        case"9":return"০৯";
+                        case"10":return"১০";
+                        case"11":return"১১";
+                        case"12":return"১২";
+                        case"13":return"১৩";
+                        case"14":return"১৪";
+                        case"15":return"১৫";
+                        case"16":return"১৬";
+                        case"17":return"১৭";
+                        case"18":return"১৮";
+                        case"19":return"১৯";
+                        case"20":return"২০";
+                        case"21":return"২১";
+                        case"22":return"২২";
+                        case"23":return"২৩";
+                        case"24":return"২৪";
+                        case"25":return"২৫";
+                        case"26":return"২৬";
+                        case"27":return"২৭";
+                        case"28":return"২৮";
+                        case"29":return"২৯";
+                        case"30":return"৩০";
+             }
+        }
 
 public function custome_date($d)
 {
