@@ -20,7 +20,7 @@
                                 <div class="col-sm-2 mb-3">
                                     <label>ব্রাঞ্চ নাম</label>
                                     <div class="input-group">
-                                        <select class="js-example-basic-single form-control @error('branch_id') is-invalid @enderror" name="branch_id" required="" id="branch_id" onchange="loadWeeklyArea()">
+                                        <select class="js-example-basic-single form-control @error('branch_id') is-invalid @enderror" name="branch_id" required="" id="branch_id" onchange="loadWeeklyDayArea()">
                                             <option value="">নির্বাচন করুন</option>
                                             @if($branch)
                                             @foreach($branch as $showbranch)
@@ -34,6 +34,24 @@
                                     @enderror
                                 </div>
 
+                                <div class="col-sm-2 mb-3">
+                                    <label>দিন</label>
+                                    <div class="input-group">
+                                        <select class="js-example-basic-single form-control @error('day') is-invalid @enderror" name="day" id="day" required="" onchange="loadWeeklyDayArea()">
+                                            <option value="NULL">-- নির্বাচন করুন --</option>
+                                            <option value="sat">শনিবার</option>
+                                            <option value="sun">রবিবার</option>
+                                            <option value="mon">সোমবার</option>
+                                            <option value="tue">মঙ্গলবার</option>
+                                            <option value="wed">বুধবার</option>
+                                            <option value="thu">বৃহস্পতিবার</option>
+                                            <option value="fri">শুক্রবার</option>
+                                        </select>
+                                    </div>
+                                    @error('day')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
 
                                 <div class="col-sm-2 mb-3">
                                     <label>কেন্দ্র নাম</label>
@@ -171,9 +189,10 @@
 
 
             <script type="text/javascript">
-                function loadWeeklyArea()
+                function loadWeeklyDayArea()
                 {
                     var branch_id = $('#branch_id').val();
+                    var day = $('#day').val();
 
                 // var default = "<option value=''>নির্বাচন করুন</option>";
 
@@ -189,11 +208,11 @@
                             'X-CSRF-TOKEN' : '{{ csrf_token() }}'
                         },
 
-                        url : '{{ url('loadWeeklyArea') }}',
+                        url : '{{ url('loadWeeklyDayArea') }}',
 
                         type : 'POST',
 
-                        data : {branch_id},
+                        data : {branch_id,day},
 
                         success : function(data)
                         {

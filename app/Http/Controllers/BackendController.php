@@ -709,6 +709,34 @@ class BackendController extends Controller
             }
         }
     }
+    public function loadWeeklyDayArea(Request $request)
+    {
+        if(Auth::user()->user_role == 1)
+        {
+            $area = area_info::where('branch_id',$request->branch_id)->where('area_infos.status',1)
+            ->where('type','weekly')
+            ->where('day',$request->day)
+            ->get();
+        }
+        else
+        {
+            $area = admin_area_info::where('admin_area_infos.admin_id',Auth::user()->id)
+            ->join('area_infos','area_infos.id','=','admin_area_infos.area_id')
+            ->where('area_infos.status',1)->where('area_infos.branch_id',$request->branch_id)
+            ->where('type','weekly')
+            ->where('day',$request->day)
+            ->select('area_infos.*')
+            ->get();
+        }
+        if($area)
+        {
+            echo "<option value=''>নির্বাচন করুন</option>";
+            foreach($area as $v)
+            {
+                echo "<option value='".$v->id."'>".$v->area_name."</option>";
+            }
+        }
+    }
 
     public function loadAreaData(Request $request)
     {
