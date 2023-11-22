@@ -20,7 +20,7 @@
                                 <div class="col-sm-2 mb-3">
                                     <label>ব্রাঞ্চ নাম</label>
                                     <div class="input-group">
-                                        <select class="js-example-basic-single form-control @error('branch_id') is-invalid @enderror" name="branch_id" required="" id="branch_id" onchange="loadArea()">
+                                        <select class="js-example-basic-single form-control @error('branch_id') is-invalid @enderror" name="branch_id" required="" id="branch_id" onchange="loadWeeklyDayArea()">
                                             <option value="">নির্বাচন করুন</option>
 
                                             @if($branch)
@@ -34,6 +34,25 @@
                                         </select>
                                     </div>
                                     @error('branch_id')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="col-sm-2 mb-3">
+                                    <label>দিন</label>
+                                    <div class="input-group">
+                                        <select class="js-example-basic-single form-control @error('day') is-invalid @enderror" name="day" id="day" required="" onchange="loadWeeklyDayArea()">
+                                            <option value="NULL">-- নির্বাচন করুন --</option>
+                                            <option value="sat">শনিবার</option>
+                                            <option value="sun">রবিবার</option>
+                                            <option value="mon">সোমবার</option>
+                                            <option value="tue">মঙ্গলবার</option>
+                                            <option value="wed">বুধবার</option>
+                                            <option value="thu">বৃহস্পতিবার</option>
+                                            <option value="fri">শুক্রবার</option>
+                                        </select>
+                                    </div>
+                                    @error('day')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -174,40 +193,41 @@
         </script>
 
 
-            <script type="text/javascript">
-                function loadArea()
-                {
-                    var branch_id = $('#branch_id').val();
+<script type="text/javascript">
+    function loadWeeklyDayArea()
+    {
+        var branch_id = $('#branch_id').val();
+        var day = $('#day').val();
 
-                // var default = "<option value=''>নির্বাচন করুন</option>";
+    // var default = "<option value=''>নির্বাচন করুন</option>";
 
-                // alert(branch_id);
-                if(branch_id == "")
-                {
-                    $('#area_id').html("");
-                }
-                else
-                {
-                    $.ajax({
-                        headers : {
-                            'X-CSRF-TOKEN' : '{{ csrf_token() }}'
-                        },
+    // alert(branch_id);
+    if(branch_id == "")
+    {
+        $('#area_id').html("");
+    }
+    else
+    {
+        $.ajax({
+            headers : {
+                'X-CSRF-TOKEN' : '{{ csrf_token() }}'
+            },
 
-                        url : '{{ url('loadWeeklyArea') }}',
+            url : '{{ url('loadWeeklyDayArea') }}',
 
-                        type : 'POST',
+            type : 'POST',
 
-                        data : {branch_id},
+            data : {branch_id,day},
 
-                        success : function(data)
-                        {
-                            $('#area_id').html(data);
-                            // alert(data);
-                        }
-                    });
-                }
+            success : function(data)
+            {
+                $('#area_id').html(data);
+                // alert(data);
             }
-        </script>
+        });
+    }
+}
+</script>
 
 
 
