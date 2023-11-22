@@ -67,7 +67,7 @@ class AreaController extends Controller
             return redirect()->back()->with('error','কেন্দ্র যুক্ত করা হয়নি');
         }
 
-        
+
     }
 
     /**

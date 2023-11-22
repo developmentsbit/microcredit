@@ -89,6 +89,7 @@ Route::get('/saving_reg_form',[BackendController::class,'saving_reg_form']);
 
 
 Route::post('loadAreaData',[BackendController::class,'loadAreaData']);
+Route::post('loadBranchData',[BackendController::class,'loadBranchData']);
 
 // Route::get('/dashboard/{branch_name}/{id}', [App\Http\Controllers\BackendController::class, 'branch_dashboard']);
 Route::post('/loadEmployee',[BackendController::class,'loadEmployee']);
@@ -512,11 +513,6 @@ Route::resources([
     'add_asset_categorey'=>AssetCategorey::class,
     'add_asset_expense'=>AssetExpense::class,
     'add_asset_depreciation'=>AssetDepreciation::class,
-
-
-
-
-
 ]);
 
 Route::get('deposit_transaction',[DepositTransactionReport::class,'index']);
