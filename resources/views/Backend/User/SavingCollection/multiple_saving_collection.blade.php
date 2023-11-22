@@ -141,24 +141,6 @@
                                     @enderror
                                 </div>
 
-                                <div class="col-sm-2 mb-3">
-                                    <label>দিন</label>
-                                    <div class="input-group">
-                                        <select class="js-example-basic-single form-control @error('schema_id') is-invalid @enderror" name="day" id="day" required="">
-                                            <option value="saturday">শনিবার</option>
-                                            <option value="sunday">রবিবার</option>
-                                            <option value="monday">সোমবার</option>
-                                            <option value="tuesday">মঙ্গলবার</option>
-                                            <option value="wednesday">বুধবার</option>
-                                            <option value="thursday">বৃহস্পতিবার</option>
-                                            <option value="friday">শুক্রবার</option>
-                                        </select>
-                                    </div>
-                                    @error('schema_id')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
                                 {{-- <div class="col-sm-2 mb-3">
                                     <label>তারিখ</label>
                                     <div class="input-group">
