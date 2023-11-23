@@ -49,7 +49,7 @@ $companyInfo = company_information::first();
                     <div class="col-12">
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <select class="form-control" name="search_by" id="search_by" onchange="loadMemberData()">
+                                <select class="form-control" name="search_by" id="search_by" onchange="">
                                     <option value="member_id">Member ID</option>
                                     <option value="saving_id">Saving ID</option>
                                     <option value="deposit_id">Deposit ID</option>
