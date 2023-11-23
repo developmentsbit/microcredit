@@ -228,7 +228,7 @@ $companyInfo = company_information::first();
 				</div>
 				<div class="collapse navbar-collapse">
 					<ul class="navbar-nav mr-auto">
-						<li class="nav-item">
+						{{-- <li class="nav-item">
 							<a href="#!" class="pop-search"><i class="feather icon-search"></i></a>
 							<div class="search-bar">
 								<input type="text" class="form-control border-0 shadow-none" placeholder="Search By Member ID or Member Name or Member Phone Number" onkeypress="return getMemberData();" id="searchData">
@@ -239,7 +239,7 @@ $companyInfo = company_information::first();
 
                                 </div>
 							</div>
-						</li>
+						</li> --}}
 						<div class="dropdown-menu dropdown-menu-right notification">
 									<div class="noti-head">
 										<h6 class="d-inline-block m-b-0">Notifications</h6>
