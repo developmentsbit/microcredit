@@ -480,6 +480,9 @@ Use App\Models\branch_info;
                     </div>
                 </div>
             </div>
+            </div>
+            <!-- tazim done this-->
+            <div class="row">
             <div class="col-md-3 col-xl-3">
                 <div class="card flat-card">
                     <div class="row-table">
@@ -529,7 +532,7 @@ Use App\Models\branch_info;
                 <div class="card flat-card">
                     <div class="row-table">
                         <div class="col-md-4 col-sm-2 card-body">
-                             <img src="{{asset('Backend/images/icon')}}/invoice.png" alt="">     
+                             <img src="{{asset('Backend/images/icon')}}/receipt (1).png" alt="">     
                         </div>
                         <div class="col-sm-8 card-body" id="ticket">
                         <div class="text-center">
@@ -604,7 +607,7 @@ Use App\Models\branch_info;
                 <div class="card flat-card">
                     <div class="row-table">
                         <div class="col-md-4 col-sm-2 card-body">
-                             <img src="{{asset('Backend/images/icon')}}/trend.png" alt="">     
+                             <img src="{{asset('Backend/images/icon')}}/cheque.png" alt="">     
                         </div>
                         <div class="col-sm-8 card-body" id="ticket">
                         <div class="text-center">
@@ -619,7 +622,7 @@ Use App\Models\branch_info;
                 <div class="card flat-card">
                     <div class="row-table">
                         <div class="col-md-4 col-sm-2 card-body">
-                             <img src="{{asset('Backend/images/icon')}}/trend.png" alt="">     
+                             <img src="{{asset('Backend/images/icon')}}/payment-check.png" alt="">     
                         </div>
                         <div class="col-sm-8 card-body" id="ticket">
                         <div class="text-center">
@@ -634,7 +637,7 @@ Use App\Models\branch_info;
                 <div class="card flat-card">
                     <div class="row-table">
                         <div class="col-md-4 col-sm-2 card-body">
-                             <img src="{{asset('Backend/images/icon')}}/trend.png" alt="">     
+                             <img src="{{asset('Backend/images/icon')}}/wallet (1).png" alt="">     
                         </div>
                         <div class="col-sm-8 card-body" id="ticket">
                         <div class="text-center">
@@ -649,7 +652,7 @@ Use App\Models\branch_info;
                 <div class="card flat-card">
                     <div class="row-table">
                         <div class="col-md-4 col-sm-2 card-body">
-                             <img src="{{asset('Backend/images/icon')}}/trend.png" alt="">     
+                             <img src="{{asset('Backend/images/icon')}}/credit-card.png" alt="">     
                         </div>
                         <div class="col-sm-8 card-body" id="ticket">
                         <div class="text-center">
@@ -664,7 +667,7 @@ Use App\Models\branch_info;
                 <div class="card flat-card">
                     <div class="row-table">
                         <div class="col-md-4 col-sm-2 card-body">
-                             <img src="{{asset('Backend/images/icon')}}/trend.png" alt="">     
+                             <img src="{{asset('Backend/images/icon')}}/invoice.png" alt="">     
                         </div>
                         <div class="col-sm-8 card-body" id="ticket">
                         <div class="text-center">
@@ -679,7 +682,7 @@ Use App\Models\branch_info;
                 <div class="card flat-card">
                     <div class="row-table">
                         <div class="col-md-4 col-sm-2 card-body">
-                             <img src="{{asset('Backend/images/icon')}}/trend.png" alt="">     
+                             <img src="{{asset('Backend/images/icon')}}/bill.png" alt="">     
                         </div>
                         <div class="col-sm-8 card-body" id="ticket">
                         <div class="text-center">
@@ -694,7 +697,7 @@ Use App\Models\branch_info;
                 <div class="card flat-card">
                     <div class="row-table">
                         <div class="col-md-4 col-sm-2 card-body">
-                             <img src="{{asset('Backend/images/icon')}}/trend.png" alt="">     
+                             <img src="{{asset('Backend/images/icon')}}/cash-machine.png" alt="">     
                         </div>
                         <div class="col-sm-8 card-body" id="ticket">
                         <div class="text-center">
