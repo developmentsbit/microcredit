@@ -36,7 +36,7 @@ Use App\Models\branch_info;
                 <div class="row">
                     <div class="col-sm-3 col-lg-3 mb-3 link-box">
                         <p><b>Welcome back, SUPER ADMIN !</b></p>
-                        
+
                         <span class="fs-semibold text-muted">Track your somity activity, leads and deals here.</span>
                     </div>
                     <div class="col-sm-3 col-lg-3 mb-3 link-box">
@@ -270,224 +270,13 @@ Use App\Models\branch_info;
 
         {{-- yearly --}}
         <div class="showAreaData">
-
-            <div class="row mt-4">
-                <div class="col-md-12 col-xl-4">
-                    <div class="card flat-card">
-                        <div class="row-table">
-                            <div class="col-sm-6 card-body br">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="row">
-                                            <div class="col-12 text-center">
-                                                <b>মোট ঋণ আদায়</b>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 text-md-center pt-2">
-                                        <h5>{{$grandtotals['loan_recived']}} /-</h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 card-body br">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="row">
-                                            <div class="col-12 text-center">
-                                                <b>মোট ঋণ প্রদান</b>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 text-md-center pt-2">
-                                        <h5>{{$grandtotals['loan_provide']}} /-</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 col-xl-4">
-                    <div class="card flat-card">
-                        <div class="row-table">
-                            <div class="col-sm-6 card-body br">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="row">
-                                            <div class="col-12 text-center">
-                                                <b>মোট সঞ্চয় আদায়</b>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 text-md-center pt-2">
-                                        <h5>{{$grandtotals['saving_collection']}} /-</h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 card-body br">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="row">
-                                            <div class="col-12 text-center">
-                                                <b>মোট সঞ্চয় ফেরত</b>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 text-md-center pt-2">
-                                        <h5>{{$grandtotals['saving_provide']}} /-</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 col-xl-4">
-                    <div class="card flat-card">
-                        <div class="row-table">
-                            <div class="col-sm-6 card-body br">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="row">
-                                            <div class="col-12 text-center">
-                                                <b>মোট ডিপোজিট আদায়</b>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 text-md-center pt-2">
-                                        <h5>{{$grandtotals['deposit_collection']}} /-</h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 card-body br">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="row">
-                                            <div class="col-12 text-center">
-                                                <b>মোট ডিপোজিট ফেরত</b>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 text-md-center pt-2">
-                                        <h5>{{$grandtotals['deposit_provide']}} /-</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {{-- daily --}}
-            <div class="row mt-4">
-                <div class="col-md-12 col-xl-4">
-                    <div class="card flat-card">
-                        <div class="row-table">
-                            <div class="col-sm-6 card-body br">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="row">
-                                            <div class="col-12 text-center">
-                                                <b>আজকের ঋণ আদায়</b>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 text-md-center pt-2">
-                                        <h5>{{$totals['total_loan_recived']}} /-</h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 card-body br">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="row">
-                                            <div class="col-12 text-center">
-                                                <b>আজকের ঋণ প্রদান</b>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 text-md-center pt-2">
-                                        <h5>{{$totals['total_loan_provide']}} /-</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 col-xl-4">
-                    <div class="card flat-card">
-                        <div class="row-table">
-                            <div class="col-sm-6 card-body br">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="row">
-                                            <div class="col-12 text-center">
-                                                <b>আজকের সঞ্চয় আদায়</b>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 text-md-center pt-2">
-                                        <h5>{{$totals['total_saving_collection']}} /-</h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 card-body br">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="row">
-                                            <div class="col-12 text-center">
-                                                <b>আজকের সঞ্চয় ফেরত</b>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 text-md-center pt-2">
-                                        <h5>{{$totals['total_saving_provide']}} /-</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 col-xl-4">
-                    <div class="card flat-card">
-                        <div class="row-table">
-                            <div class="col-sm-6 card-body br">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="row">
-                                            <div class="col-12 text-center">
-                                                <b>আজকের ডিপোজিট ফেরত</b>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 text-md-center pt-2">
-                                        <h5>{{$totals['total_deposit_collection']}} /-</h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 card-body br">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="row">
-                                            <div class="col-12 text-center">
-                                                <b>আজকের ডিপোজিট প্রদান</b>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 text-md-center pt-2">
-                                        <h5>{{$totals['total_deposit_provide']}} /-</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </div>
             <!-- tazim done this-->
-            <div class="row">
+        <div class="row">
             <div class="col-md-3 col-xl-3">
                 <div class="card flat-card">
                     <div class="row-table">
                         <div class="col-md-4 col-sm-2 card-body">
-                             <img src="{{asset('Backend/images/icon')}}/trend.png" alt="">     
+                             <img src="{{asset('Backend/images/icon')}}/trend.png" alt="">
                         </div>
                         <div class="col-sm-8 card-body" id="ticket">
                         <div class="text-center">
@@ -502,12 +291,12 @@ Use App\Models\branch_info;
                 <div class="card flat-card">
                     <div class="row-table">
                         <div class="col-md-4 col-sm-2 card-body">
-                             <img src="{{asset('Backend/images/icon')}}/attachment.png" alt="">     
+                             <img src="{{asset('Backend/images/icon')}}/attachment.png" alt="">
                         </div>
                         <div class="col-sm-8 card-body" id="ticket">
                         <div class="text-center">
                             <b>আজকের ঋণ আদায়</b><br>
-                            <h5>00/-</h5>
+                            <h5>{{$totals['total_loan_recived']}}/-</h5>
                         </div>
                         </div>
                     </div>
@@ -517,7 +306,7 @@ Use App\Models\branch_info;
                 <div class="card flat-card">
                     <div class="row-table">
                         <div class="col-md-4 col-sm-2 card-body">
-                             <img src="{{asset('Backend/images/icon')}}/coins.png" alt="">     
+                             <img src="{{asset('Backend/images/icon')}}/coins.png" alt="">
                         </div>
                         <div class="col-sm-8 card-body" id="ticket">
                         <div class="text-center">
@@ -532,7 +321,7 @@ Use App\Models\branch_info;
                 <div class="card flat-card">
                     <div class="row-table">
                         <div class="col-md-4 col-sm-2 card-body">
-                             <img src="{{asset('Backend/images/icon')}}/receipt (1).png" alt="">     
+                             <img src="{{asset('Backend/images/icon')}}/receipt (1).png" alt="">
                         </div>
                         <div class="col-sm-8 card-body" id="ticket">
                         <div class="text-center">
@@ -547,7 +336,7 @@ Use App\Models\branch_info;
                 <div class="card flat-card">
                     <div class="row-table">
                         <div class="col-md-4 col-sm-2 card-body">
-                             <img src="{{asset('Backend/images/icon')}}/coin.png" alt="">     
+                             <img src="{{asset('Backend/images/icon')}}/coin.png" alt="">
                         </div>
                         <div class="col-sm-8 card-body" id="ticket">
                         <div class="text-center">
@@ -562,7 +351,7 @@ Use App\Models\branch_info;
                 <div class="card flat-card">
                     <div class="row-table">
                         <div class="col-md-4 col-sm-2 card-body">
-                             <img src="{{asset('Backend/images/icon')}}/money-sack.png" alt="">     
+                             <img src="{{asset('Backend/images/icon')}}/money-sack.png" alt="">
                         </div>
                         <div class="col-sm-8 card-body" id="ticket">
                         <div class="text-center">
@@ -577,7 +366,7 @@ Use App\Models\branch_info;
                 <div class="card flat-card">
                     <div class="row-table">
                         <div class="col-md-4 col-sm-2 card-body">
-                             <img src="{{asset('Backend/images/icon')}}/receipt.png" alt="">     
+                             <img src="{{asset('Backend/images/icon')}}/receipt.png" alt="">
                         </div>
                         <div class="col-sm-8 card-body" id="ticket">
                         <div class="text-center">
@@ -592,7 +381,7 @@ Use App\Models\branch_info;
                 <div class="card flat-card">
                     <div class="row-table">
                         <div class="col-md-4 col-sm-2 card-body">
-                             <img src="{{asset('Backend/images/icon')}}/dollar-symbol.png" alt="">     
+                             <img src="{{asset('Backend/images/icon')}}/dollar-symbol.png" alt="">
                         </div>
                         <div class="col-sm-8 card-body" id="ticket">
                         <div class="text-center">
@@ -607,12 +396,12 @@ Use App\Models\branch_info;
                 <div class="card flat-card">
                     <div class="row-table">
                         <div class="col-md-4 col-sm-2 card-body">
-                             <img src="{{asset('Backend/images/icon')}}/cheque.png" alt="">     
+                             <img src="{{asset('Backend/images/icon')}}/cheque.png" alt="">
                         </div>
                         <div class="col-sm-8 card-body" id="ticket">
                         <div class="text-center">
                             <b>Todays Deposit Receive</b><br>
-                            <h5>00/-</h5>
+                            <h5>{{$totals['total_deposit_collection']}}/-</h5>
                         </div>
                         </div>
                     </div>
@@ -622,12 +411,12 @@ Use App\Models\branch_info;
                 <div class="card flat-card">
                     <div class="row-table">
                         <div class="col-md-4 col-sm-2 card-body">
-                             <img src="{{asset('Backend/images/icon')}}/payment-check.png" alt="">     
+                             <img src="{{asset('Backend/images/icon')}}/payment-check.png" alt="">
                         </div>
                         <div class="col-sm-8 card-body" id="ticket">
                         <div class="text-center">
                             <b>Todays Deposit Payment</b><br>
-                            <h5>00/-</h5>
+                            <h5>{{$totals['total_deposit_provide']}}/-</h5>
                         </div>
                         </div>
                     </div>
@@ -637,7 +426,7 @@ Use App\Models\branch_info;
                 <div class="card flat-card">
                     <div class="row-table">
                         <div class="col-md-4 col-sm-2 card-body">
-                             <img src="{{asset('Backend/images/icon')}}/wallet (1).png" alt="">     
+                             <img src="{{asset('Backend/images/icon')}}/wallet (1).png" alt="">
                         </div>
                         <div class="col-sm-8 card-body" id="ticket">
                         <div class="text-center">
@@ -652,7 +441,7 @@ Use App\Models\branch_info;
                 <div class="card flat-card">
                     <div class="row-table">
                         <div class="col-md-4 col-sm-2 card-body">
-                             <img src="{{asset('Backend/images/icon')}}/credit-card.png" alt="">     
+                             <img src="{{asset('Backend/images/icon')}}/credit-card.png" alt="">
                         </div>
                         <div class="col-sm-8 card-body" id="ticket">
                         <div class="text-center">
@@ -667,7 +456,7 @@ Use App\Models\branch_info;
                 <div class="card flat-card">
                     <div class="row-table">
                         <div class="col-md-4 col-sm-2 card-body">
-                             <img src="{{asset('Backend/images/icon')}}/invoice.png" alt="">     
+                             <img src="{{asset('Backend/images/icon')}}/invoice.png" alt="">
                         </div>
                         <div class="col-sm-8 card-body" id="ticket">
                         <div class="text-center">
@@ -682,7 +471,7 @@ Use App\Models\branch_info;
                 <div class="card flat-card">
                     <div class="row-table">
                         <div class="col-md-4 col-sm-2 card-body">
-                             <img src="{{asset('Backend/images/icon')}}/bill.png" alt="">     
+                             <img src="{{asset('Backend/images/icon')}}/bill.png" alt="">
                         </div>
                         <div class="col-sm-8 card-body" id="ticket">
                         <div class="text-center">
@@ -697,7 +486,7 @@ Use App\Models\branch_info;
                 <div class="card flat-card">
                     <div class="row-table">
                         <div class="col-md-4 col-sm-2 card-body">
-                             <img src="{{asset('Backend/images/icon')}}/cash-machine.png" alt="">     
+                             <img src="{{asset('Backend/images/icon')}}/cash-machine.png" alt="">
                         </div>
                         <div class="col-sm-8 card-body" id="ticket">
                         <div class="text-center">
