@@ -66,7 +66,7 @@ Route::get('/fix_deposit_schema',[BackendController::class,'fix_deposit_schema']
 Route::get('/fix_invest_schema',[BackendController::class,'fix_invest_schema']);
 
 Route::get('/',[BackendController::class,'index']);
-
+Route::post('loadMemberData',[BackendController::class,'loadMemberData']);
 Auth::routes();
 
 Route::get('/register', function() {

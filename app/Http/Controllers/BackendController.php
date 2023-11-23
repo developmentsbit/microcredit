@@ -25,6 +25,9 @@ use App\Models\investment_handover;
 use App\Models\saving_transaction;
 use App\Models\fixed_deposit_collection;
 use App\Models\fixed_deposit_return;
+use App\Models\saving_registration;
+use App\Models\fixed_deposit_registration;
+use App\Models\investor_registration;
 use Hash;
 use DB;
 
@@ -791,6 +794,60 @@ class BackendController extends Controller
 
         return view('Backend.Layouts.branch_data',compact('grandtotals','totals'));
 
+    }
+
+    public function loadMemberData(Request $request)
+    {
+        // return $request->data;
+        $member_id = '';
+
+        if($request->search_by == 'member_id')
+        {
+            $member_id = $request->data;
+        }
+        elseif($request->search_by == 'saving_id')
+        {
+            $member = saving_registration::where('registration_id',$request->data)->first();
+            $member_id = $member->member_id;
+        }
+        elseif($request->search_by == 'deposit_id')
+        {
+            $member = fixed_deposit_registration::where('registration_id',$request->data)->first();
+            $member_id = $member->member_id;
+        }
+        elseif($request->search_by == 'invest_id')
+        {
+            $member = investor_registration::where('registration_id',$request->data)->first();
+            $member_id = $member->member_id;
+        }
+
+        $memberData = [];
+        //member_info
+        $memberData['member'] = member::where('member_id',$member_id)
+        ->leftjoin('branch_infos','branch_infos.id','members.branch_id')
+        ->leftjoin('area_infos','area_infos.id','members.area_id')
+        ->select('members.*','branch_infos.branch_name','area_infos.area_name')
+        ->first();
+        //saving info
+        $memberData['saving'] = saving_registration::where('member_id',$member_id)
+        ->leftjoin('branch_infos','branch_infos.id','saving_registrations.branch_id')
+        ->leftjoin('area_infos','area_infos.id','saving_registrations.area_id')
+        ->select('saving_registrations.*','branch_infos.branch_name','area_infos.area_name')
+        ->get();
+        //deposit_info
+        $memberData['deposit'] = fixed_deposit_registration::where('member_id',$member_id)
+        ->leftjoin('branch_infos','branch_infos.id','fixed_deposit_registrations.branch_id')
+        ->leftjoin('area_infos','area_infos.id','fixed_deposit_registrations.area_id')
+        ->select('fixed_deposit_registrations.*','branch_infos.branch_name','area_infos.area_name')
+        ->get();
+        //invest info
+        $memberData['invest'] = investor_registration::where('member_id',$member_id)
+        ->leftjoin('branch_infos','branch_infos.id','investor_registrations.branch_id')
+        ->leftjoin('area_infos','area_infos.id','investor_registrations.area_id')
+        ->select('investor_registrations.*','branch_infos.branch_name','area_infos.area_name')
+        ->get();
+
+        return view('Backend.Layouts.ajax_member_info',compact('memberData'));
     }
 
 

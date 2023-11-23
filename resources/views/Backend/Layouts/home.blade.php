@@ -14,6 +14,25 @@
 a.box-link:hover {
     background: #e3e0e0;
 }
+.form-group.row {
+    background: white;
+    padding-top: 7px;
+    position: relative;
+}
+
+div#searchResult {
+    margin-top: 20px;
+    position: absolute;
+    top: 32px;
+    padding: 10px 27px;
+    background: white;
+    z-index: 999;
+}
+
+div#accCard {
+    background: lightblue;
+    border: 1px solid white;
+}
 </style>
 @php
 use App\Models\company_information;
@@ -26,15 +45,22 @@ $companyInfo = company_information::first();
         <!-- [ breadcrumb ] start -->
         <div class="page-header">
             <div class="page-block">
-                <div class="row align-items-center">
-                    <div class="col-md-12">
-                        <div class="page-header-title">
-                            <h5 class="m-b-10">ড্যাশবোর্ড</h5>
+                <div class="form-group row">
+                    <div class="col-12">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <select class="form-control" name="search_by" id="search_by" onchange="loadMemberData()">
+                                    <option value="member_id">Member ID</option>
+                                    <option value="saving_id">Saving ID</option>
+                                    <option value="deposit_id">Deposit ID</option>
+                                    <option value="invest_id">Invest ID</option>
+                                </select>
+                                <input type="text" placeholder="Search By Memeber ID or Saving ID or Invest ID or Deposit ID" class="form-control" id="search" name="search" onchange="loadMemberData()">
+                            </div>
                         </div>
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{url('/')}}"><i class="feather icon-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="{{url('/')}}">ড্যাশবোর্ড</a></li>
-                        </ul>
+                    </div>
+                    <div class="col-12" id="searchResult">
+
                     </div>
                 </div>
             </div>
@@ -817,4 +843,48 @@ $companyInfo = company_information::first();
             <!-- Latest Customers end -->
         </div> --}}
         <!-- [ Main Content ] end -->
+
+
+<script>
+    // $('#search').on('keyup',function(e){
+    //     let data = $(this).val();
+    //     // alert(data);
+    //     if(data == "")
+    //     {
+    //         $('#searchResult').hide();
+    //     }
+    // });
+    function loadMemberData()
+    {
+        let data = $('#search').val();
+        let search_by = $('#search_by').val();
+        if(data != "")
+        {
+            $.ajax({
+                headers : {
+                    'X-CSRF-TOKEN' : '{{csrf_token()}}'
+                },
+                url : '{{url('loadMemberData')}}',
+
+                type : 'POST',
+
+                data : {data,search_by},
+
+                beforeSend : function()
+                {
+
+                },
+
+                success : function(data)
+                {
+                    $('#searchResult').html(data);
+                }
+            });
+        }
+        else
+        {
+            $('#searchResult').hide();
+        }
+    }
+</script>
 @endsection
