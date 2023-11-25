@@ -88,13 +88,13 @@
                                     <div class="input-group">
                                         <select class="form-control form-control-sm @error('day') is-invalid @enderror" name="day" onchange="showDay()" id="day" required>
                                             <option value="NULL">-- নির্বাচন করুন --</option>
-                                            <option @if($data->day == 'sat') selected @endif value="sat">শনিবার</option>
-                                            <option @if($data->day == 'sun') selected @endif value="sun">রবিবার</option>
-                                            <option @if($data->day == 'mon') selected @endif value="mon">সোমবার</option>
-                                            <option @if($data->day == 'tue') selected @endif value="tue">মঙ্গলবার</option>
-                                            <option @if($data->day == 'wed') selected @endif value="wed">বুধবার</option>
-                                            <option @if($data->day == 'thu') selected @endif value="thu">বৃহস্পতিবার</option>
-                                            <option @if($data->day == 'fri') selected @endif value="fri">শুক্রবার</option>
+                                            <option @if($data->day == 'saturday') selected @endif value="saturday">শনিবার</option>
+                                            <option @if($data->day == 'sunday') selected @endif value="sunday">রবিবার</option>
+                                            <option @if($data->day == 'monday') selected @endif value="monday">সোমবার</option>
+                                            <option @if($data->day == 'tuesday') selected @endif value="tuesday">মঙ্গলবার</option>
+                                            <option @if($data->day == 'wednesday') selected @endif value="wednesday">বুধবার</option>
+                                            <option @if($data->day == 'thursday') selected @endif value="thursday">বৃহস্পতিবার</option>
+                                            <option @if($data->day == 'friday') selected @endif value="friday">শুক্রবার</option>
                                         </select>
                                     </div>
                                     @error('day')

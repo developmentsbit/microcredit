@@ -43,13 +43,13 @@
                                     <div class="input-group">
                                         <select class="js-example-basic-single form-control @error('day') is-invalid @enderror" name="day" id="day" required="" onchange="loadWeeklyDayArea()">
                                             <option value="NULL">-- নির্বাচন করুন --</option>
-                                            <option value="sat">শনিবার</option>
-                                            <option value="sun">রবিবার</option>
-                                            <option value="mon">সোমবার</option>
-                                            <option value="tue">মঙ্গলবার</option>
-                                            <option value="wed">বুধবার</option>
-                                            <option value="thu">বৃহস্পতিবার</option>
-                                            <option value="fri">শুক্রবার</option>
+                                            <option value="saturday">শনিবার</option>
+                                            <option value="sunday">রবিবার</option>
+                                            <option value="monday">সোমবার</option>
+                                            <option value="tuesday">মঙ্গলবার</option>
+                                            <option value="wednesday">বুধবার</option>
+                                            <option value="thursday">বৃহস্পতিবার</option>
+                                            <option value="friday">শুক্রবার</option>
                                         </select>
                                     </div>
                                     @error('day')
