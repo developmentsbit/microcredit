@@ -267,7 +267,7 @@ Use App\Models\branch_info;
             </div>
         </div>
 
-
+        {{-- {{asset('Backend/avatar')}}/add_user.png --}}
         {{-- yearly --}}
         <div class="showAreaData">
             <!-- tazim done this-->
@@ -411,7 +411,7 @@ Use App\Models\branch_info;
                 <div class="card flat-card">
                     <div class="row-table">
                         <div class="col-md-4 col-sm-2 card-body">
-                             <img src="{{asset('Backend/images/icon')}}/payment-check.png" alt="">
+                             <img src="{{asset('Backend')}}/images/icon/payment-check.png" alt="">
                         </div>
                         <div class="col-sm-8 card-body" id="ticket">
                         <div class="text-center">

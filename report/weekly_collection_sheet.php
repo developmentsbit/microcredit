@@ -51,44 +51,44 @@
            var checking_html = '<img src="loading.gif" /> <br> Loading...';
            $('#sms').html(checking_html);
 
-           $('#sms').val("");  
+           $('#sms').val("");
            let url = new URL(window.location.href);
            let searchParams = new URLSearchParams(url.search);
-           let branch_id=searchParams.get('branch_id');  
+           let branch_id=searchParams.get('branch_id');
 
            if(branch_id=="")
            {
               alert("Select Branch Name");
               return 0;
            }
-           let area_id=searchParams.get('area_id');  
+           let area_id=searchParams.get('area_id');
            if(area_id=="")
            {
               alert("Select Kandro Name");
               return 0;
            }
-           let schema_id=searchParams.get('schema_id');  
+           let schema_id=searchParams.get('schema_id');
            if(schema_id=="")
            {
               alert("Select Schema Name");
               return 0;
            }
 
-           let day=searchParams.get('day');  
+           let day=searchParams.get('day');
            if(day=="")
            {
               alert("Select Day");
               return 0;
            }
 
-           let month=searchParams.get('month');  
+           let month=searchParams.get('month');
            if(month=="")
            {
               alert("Select month");
               return 0;
            }
 
-            let year=searchParams.get('year');  
+            let year=searchParams.get('year');
            if(year=="")
            {
               alert("Select Year");
@@ -97,23 +97,23 @@
 
 
 
-           let admin_id=searchParams.get('admin_id');  
+           let admin_id=searchParams.get('admin_id');
            // alert(admin_id);
            if(admin_id=="")
            {
               alert("Login Your Account Again");
               return 0;
            }
-           var lower =parseInt($('#lower').val()); 
+           var lower =parseInt($('#lower').val());
            if(lower==1)
             lower=0;
-           var upper =parseInt($('#upper').val());  
- 
-           
+           var upper =parseInt($('#upper').val());
+
+
             if(upper=="")
             {
               alert("Put Upper Limit");
-              
+
             }
             var investCollection="investCollection";
                     $.ajax({
@@ -139,14 +139,14 @@ function calculateinvest(id,sl)
           {
              investcoll=parseInt(investcoll)+parseInt(invest);
           }
-         
+
 
       }
           document.getElementById('totalinvest-'+id).value=investcoll;
      // alert(investcoll);
      // alert(id);
      // alert(sl);
-       
+
 }
     </script>
 </head>
@@ -154,12 +154,12 @@ function calculateinvest(id,sl)
  <body>
 
     <table  cellpadding="0" cellspacing="0" style="border-bottom: 2px #000 dotted; width: 100%;" >
-        <tr>    
+        <tr>
             <td style="width:10%" align="right"></td>
             <td align="center">
                 <label style="widtd:150px;">
                     <img src="logo.png"  style="max-height: 60px;max-widtd: 60px; float: left; clear: right;"></label>
-                <label> 
+                <label>
                     <span style="font-size:20px; "> শ্যামল ছায়া সমাজকল্যাণ সংস্থা</span><br>
                     <span style="font-size:14px; ">আতা, মাদ্রা, নেছারাবাদ, পিরোজপুর ।<br>
                         scsks2016@gmail.com, Phone-01721653785, 01880668788</span><br>
