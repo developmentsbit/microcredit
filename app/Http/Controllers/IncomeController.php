@@ -29,6 +29,7 @@ class IncomeController extends Controller
             $data = DB::table("incomes")
             ->leftjoin("income_titles",'income_titles.id','incomes.title_id')
             ->leftjoin("branch_infos",'branch_infos.id','incomes.branch_id')
+            ->where('incomes.details','!=','সঞ্চয় রেজিষ্ট্রেশন সার্ভিস চার্জ')
             ->select("incomes.*",'income_titles.title','branch_infos.branch_name')
             ->get();
 
