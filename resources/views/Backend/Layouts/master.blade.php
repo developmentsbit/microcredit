@@ -486,7 +486,8 @@ $companyInfo = company_information::first();
 	<script src="{{asset('Backend')}}/assets/js/vendor-all.min.js"></script>
 	<script src="{{asset('Backend')}}/assets/js/plugins/bootstrap.min.js"></script>
 	<script src="{{asset('Backend')}}/assets/js/pcoded.min.js"></script>
-
+	<!-- <script src="assets/js/plugins/apexcharts.min.js"></script> -->
+<script src="{{asset('Backend')}}/assets/js/pages/chart-apex.js"></script>
 	<!-- Apex Chart -->
 	<script src="{{asset('Backend')}}/assets/js/plugins/apexcharts.min.js"></script>
 
