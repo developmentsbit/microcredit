@@ -429,6 +429,8 @@ Route::get('/bankstatementreports', [BankController::class,'bankstatementreports
 
 Route::post('viewmember',[MemberController::class,'index']);
 
+Route::post('getMember',[MemberController::class,'getMember']);
+
 Route::post('viewSavingRegistrations',[SavingController::class,'index']);
 
 Route::post('viewSavingCollection',[SavingCollection::class,'index']);

@@ -52,6 +52,8 @@ class MemberController extends Controller
             ->leftjoin('district_informations','district_informations.id','members.district')
             ->leftjoin('upazila_informations','upazila_informations.id','members.upazila')
             ->select('members.*','branch_infos.branch_name','division_informations.division_name','district_informations.district_name','upazila_informations.upazila_name','area_infos.area_name')
+            ->orderBy('members.id','DESC')
+            ->take(100)
             ->get();
 
             if ($request->ajax()) {
@@ -97,6 +99,8 @@ class MemberController extends Controller
             ->leftjoin('district_informations','district_informations.id','members.district')
             ->leftjoin('upazila_informations','upazila_informations.id','members.upazila')
             ->select('branch_infos.branch_name','members.*','division_informations.division_name','district_informations.district_name','upazila_informations.upazila_name','area_infos.area_name')
+            ->orderBy('members.id','DESC')
+            ->take(100)
             ->get();
 
             if ($request->ajax()) {
@@ -135,6 +139,61 @@ class MemberController extends Controller
 
 
         return view('Backend.User.Member.index',compact('data'));
+    }
+
+    public function getMember(Request $request)
+    {
+        $data = member::join('branch_infos','branch_infos.id','=','members.branch_id')
+        ->leftjoin('area_infos','area_infos.id','members.area_id')
+        ->leftjoin('division_informations','division_informations.id','members.division')
+        ->leftjoin('district_informations','district_informations.id','members.district')
+        ->leftjoin('upazila_informations','upazila_informations.id','members.upazila')
+        ->where('members.aplicant_name','LIKE','%'.$request->data.'%')
+        ->orWhere('members.member_id','LIKE','%'.$request->data.'%')
+        ->select('members.*','branch_infos.branch_name','division_informations.division_name','district_informations.district_name','upazila_informations.upazila_name','area_infos.area_name')
+        ->get();
+
+        $output = '';
+
+        $sl = 1;
+
+        foreach($data as $v)
+        {
+            if($v->status == 1)
+            {
+                $status= '<span class="badge badge-success">Active</span>';
+            }
+            else
+            {
+                $status= "<span class='badge badge-danger'>Inactive</span>";
+            }
+            $img = '<img src="'.asset('Backend/images/MemberImage').'/'.$v->image.'" class="img-fluid" style="max-height: 50px;">';
+
+            $update = '<a id="" style="float: left;margin-right:10px;" href="'.route('add_member.edit',$v->id).'" class="btn btn-info btn-sm"><i class="feather icon-edit"></i></a>';
+
+            $delete = '<form action="'.route('add_member.destroy',$v->id).'" method="post">
+            '.csrf_field().'
+            '.method_field("DELETE").'
+            <button onclick="return confirm("Are Your Sure?")" id="" type="submit" class="confirm btn-sm btn btn-danger"><i class="feather icon-trash"></i></button>
+            </form>';
+
+
+            $output .='<tr>
+                <td>'.$sl++.'</td>
+                <td>'.$v->branch_name.'</td>
+                <td>'.$v->area_name.'</td>
+                <td>'.$v->member_id.'</td>
+                <td>'.$v->aplicant_name.'</td>
+                <td>'.$v->phone.'</td>
+                <td>'.$v->nid_no.'</td>
+                <td>'.$status.'</td>
+                <td>'.$img.'</td>
+                <td>'.$update.' '.$delete.'</td>
+            </tr>';
+        }
+
+
+        return $output;
     }
 
     /**
