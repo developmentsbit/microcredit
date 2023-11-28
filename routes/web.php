@@ -302,6 +302,8 @@ Route::get('/weeklysaving_reports',[ReportsController::class,'weeklysaving_repor
 Route::get('/demoreport',[ReportsController::class,'demoreport']);
 
 Route::get('/weeklysavingloancollsheet',[ReportsController::class,'weeklysavingloancollsheet']);
+Route::get('/monthly_saving_invest_coll',[ReportsController::class,'monthly_saving_invest_coll']);
+
 Route::get('/monthlycollsheet',[ReportsController::class,'monthlycollsheet']);
 Route::get('/monthlyprofitsheet',[ReportsController::class,'monthlyprofitsheet']);
 

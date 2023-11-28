@@ -901,6 +901,11 @@ class ReportsController extends Controller
         return view('Backend.User.Report.weekly_saving_report',compact('branch','schemas','invest_schema'));
     }
 
+    public function monthly_saving_invest_coll()
+    {
+        return 0;
+    }
+
 
 
 }

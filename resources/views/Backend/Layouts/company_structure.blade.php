@@ -25,6 +25,8 @@ Use App\Models\branch_info;
     div#ticket {
     padding: 0px;
 }
+
+
     </style>
 
 <!-- [ Main Content ] start -->
@@ -272,20 +274,21 @@ Use App\Models\branch_info;
         <div class="showAreaData">
             <!-- tazim done this-->
         <div class="row">
-            <div class="col-lg-4 col-md-4 col-12">
+            <div class="col-lg-6 col-md-6 col-12">
                 <div class="col-md-12 col-xl-12">
                     <div class="card">
                         <div class="card-header">
-                            <h5>Pie Charts donut</h5>
+                            <h5>মোট ঋণ তথ্য</h5>
                         </div>
                         <div class="card-body">
-                            <div id="pie-chart-2" style="width:100%"></div>
+                            {{-- <div id="pie-chart-2" style="width:100%"></div> --}}
+                            <canvas id="myChart" style=""></canvas>
                         </div>
                     </div>
                 </div>
             </div>
-        
-            <div class="col-lg-8 col-md-8 col-12">
+
+            <div class="col-lg-12 col-md-12 col-12">
                 <div class="row">
                 <div class="col-md-3 col-xl-3">
                     <div class="card flat-card bg-danger">
@@ -576,6 +579,28 @@ Use App\Models\branch_info;
                 </div>
             </div>
         </div>
+        @php
+        use App\Models\investment_handover;
+        use App\Models\investment_collection;
+        use App\Models\investor_registration;
+        $total_loan_handover = investment_handover::where('approval',1)->sum('investment_amount');
+        $total_loan_collection = investment_collection::where('approval',1)->sum('investment_collection');
+        $loan = investor_registration::where('approval',1)->get();
+        $expired_loan = 0;
+        $date = date('Y-m-d');
+        foreach ($loan as $v) {
+            if($v->investment_end_date < $date)
+            {
+                $expired_loan = $expired_loan + $v->totalamount;
+            }
+        }
+        @endphp
+        <input type="hidden" id="total_loan_handover" value="{{$total_loan_handover}}">
+        <input type="hidden" id="total_loan_collection" value="{{$total_loan_collection}}">
+        <input type="hidden" id="total_loan_due" value="{{$total_loan_handover - $total_loan_collection}}">
+        <input type="hidden" id="expired_loan" value="{{$expired_loan}}">
+
+
 
  <!-- [ Main Content ] end -->
  <script type="text/javascript">
@@ -699,6 +724,44 @@ Use App\Models\branch_info;
             })
         }
     }
+</script>
+
+
+<script>
+let yValues =[];
+yValues[0] = $('#total_loan_handover').val();
+yValues[1] = $('#total_loan_collection').val();
+yValues[2] = $('#total_loan_due').val();
+yValues[3] = $('#expired_loan').val();
+const xValues = [
+    "মোট ঋণ বিতরণ ("+ yValues[0]+" )",
+    "মোট ঋণ আদায় ("+ yValues[1]+" )",
+    "মোট ঋণ বকেয়া ("+ yValues[2]+" )",
+    "মেয়াদউত্তীর্ণ ঋণ ("+ yValues[3]+" )",
+];
+
+const barColors = [
+  "#b91d47",
+  "#00aba9",
+  "#2b5797",
+  "#e8c3b9",
+];
+
+new Chart("myChart", {
+  type: "doughnut",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+//   options: {
+//     title: {
+//       display: true,
+//     }
+//   }
+});
 </script>
 
 @endsection
