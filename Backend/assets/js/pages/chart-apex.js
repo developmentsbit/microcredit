@@ -83,8 +83,8 @@ $(document).ready(function() {
 
             chart.render();
         });
-        
-		
+
+
         $(function() {
             var options = {
                 chart: {
@@ -203,7 +203,7 @@ $(document).ready(function() {
             );
             chart.render();
         });
-     
+
 		$(function() {
             var options = {
                 chart: {
@@ -273,7 +273,7 @@ $(document).ready(function() {
                 },
                 responsive: [{
                     breakpoint: 480,
-                    options: {          
+                    options: {
                         legend: {
                             position: 'bottom'
                         }
@@ -286,6 +286,6 @@ $(document).ready(function() {
             );
             chart.render();
         });
-    
+
 	}, 700);
 });

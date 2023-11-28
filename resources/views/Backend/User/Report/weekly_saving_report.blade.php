@@ -10,17 +10,17 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5>মাল্টিপল সঞ্চয় ও ঋণ আদায়ের রিপোর্ট</h5>
+                        <h5>সাপ্তাহিক সঞ্চয় আদায় রিপোর্ট</h5>
                     </div>
                     <div class="card-body">
-                        <form action="report/invest_collection.php" method="get">
+                        <form action="report/view_weekly_invest_saving_collection.php" method="get">
 
                             <div class="row">
 
                                 <div class="col-sm-2 mb-3">
                                     <label>ব্রাঞ্চ নাম</label>
                                     <div class="input-group">
-                                        <select class="js-example-basic-single form-control @error('branch_id') is-invalid @enderror" name="branch_id" required="" id="branch_id" onchange="loadArea()">
+                                        <select class="js-example-basic-single form-control @error('branch_id') is-invalid @enderror" name="branch_id" required="" id="branch_id" onchange="loadWeeklyDayArea()">
                                             <option value="">নির্বাচন করুন</option>
 
                                             @if($branch)
@@ -34,6 +34,25 @@
                                         </select>
                                     </div>
                                     @error('branch_id')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="col-sm-2 mb-3">
+                                    <label>দিন</label>
+                                    <div class="input-group">
+                                        <select class="js-example-basic-single form-control @error('day') is-invalid @enderror" name="day" id="day" required="" onchange="loadWeeklyDayArea()">
+                                            <option value="NULL">-- নির্বাচন করুন --</option>
+                                            <option value="saturday">শনিবার</option>
+                                            <option value="sunday">রবিবার</option>
+                                            <option value="monday">সোমবার</option>
+                                            <option value="tuesday">মঙ্গলবার</option>
+                                            <option value="wednesday">বুধবার</option>
+                                            <option value="thursday">বৃহস্পতিবার</option>
+                                            <option value="friday">শুক্রবার</option>
+                                        </select>
+                                    </div>
+                                    @error('day')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -73,7 +92,7 @@
                                 <div class="col-sm-2 mb-3">
                                     <label>বিনিয়োগ স্কিমা</label>
                                     <div class="input-group">
-                                        <select class="js-example-basic-single form-control @error('schema_id') is-invalid @enderror" name="invest_schema" id="invest_schema" required="">
+                                        <select class="js-example-basic-single form-control @error('schema_id') is-invalid @enderror" name="invest_schema" id="invest_schema">
                                             <option value="">নির্বাচন করুন</option>
                                             @if ($invest_schema)
 
@@ -122,24 +141,6 @@
                                     @enderror
                                 </div>
 
-                                <div class="col-sm-2 mb-3">
-                                    <label>দিন</label>
-                                    <div class="input-group">
-                                        <select class="js-example-basic-single form-control @error('schema_id') is-invalid @enderror" name="day" id="day" required="">
-                                            <option value="saturday">শনিবার</option>
-                                            <option value="sunday">রবিবার</option>
-                                            <option value="monday">সোমবার</option>
-                                            <option value="tuesday">মঙ্গলবার</option>
-                                            <option value="wednesday">বুধবার</option>
-                                            <option value="thursday">বৃহস্পতিবার</option>
-                                            <option value="friday">শুক্রবার</option>
-                                        </select>
-                                    </div>
-                                    @error('schema_id')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
                                 {{-- <div class="col-sm-2 mb-3">
                                     <label>তারিখ</label>
                                     <div class="input-group">
@@ -174,40 +175,41 @@
         </script>
 
 
-            <script type="text/javascript">
-                function loadArea()
-                {
-                    var branch_id = $('#branch_id').val();
+<script type="text/javascript">
+    function loadWeeklyDayArea()
+    {
+        var branch_id = $('#branch_id').val();
+        var day = $('#day').val();
 
-                // var default = "<option value=''>নির্বাচন করুন</option>";
+    // var default = "<option value=''>নির্বাচন করুন</option>";
 
-                // alert(branch_id);
-                if(branch_id == "")
-                {
-                    $('#area_id').html("");
-                }
-                else
-                {
-                    $.ajax({
-                        headers : {
-                            'X-CSRF-TOKEN' : '{{ csrf_token() }}'
-                        },
+    // alert(branch_id);
+    if(branch_id == "")
+    {
+        $('#area_id').html("");
+    }
+    else
+    {
+        $.ajax({
+            headers : {
+                'X-CSRF-TOKEN' : '{{ csrf_token() }}'
+            },
 
-                        url : '{{ url('loadArea') }}',
+            url : '{{ url('loadWeeklyDayArea') }}',
 
-                        type : 'POST',
+            type : 'POST',
 
-                        data : {branch_id},
+            data : {branch_id,day},
 
-                        success : function(data)
-                        {
-                            $('#area_id').html(data);
-                            // alert(data);
-                        }
-                    });
-                }
+            success : function(data)
+            {
+                $('#area_id').html(data);
+                // alert(data);
             }
-        </script>
+        });
+    }
+}
+</script>
 
 
 
