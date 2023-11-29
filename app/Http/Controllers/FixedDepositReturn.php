@@ -11,6 +11,7 @@ use App\Models\fixed_deposit_collection;
 use App\Models\fixed_deposit_return;
 use App\Models\admin_branch_info;
 use App\Models\fixed_deposit_registration;
+use App\Models\deposit_profit;
 use Auth;
 use DB;
 use Yajra\DataTables\Facades\DataTables;
@@ -515,4 +516,59 @@ class FixedDepositReturn extends Controller
        return $total_profit - $total_return_profit;
     }
 
+    public function profit_withdraw()
+    {
+        if(Auth::user()->user_role == 1)
+        {
+            $branch = branch_info::where('status',1)->get();
+
+        }
+        else
+        {
+
+            $branch = admin_branch_info::where('admin_branch_infos.admin_id',Auth::user()->id)
+                      ->join('branch_infos','branch_infos.id','=','admin_branch_infos.branch_id')
+                      ->where('branch_infos.status',1)
+                      ->select('branch_infos.*')
+                      ->get();
+        }
+
+        return view('Backend.User.ProfitWithdraw.create',compact('branch'));
+    }
+
+    public function getProfitAmount(Request $request)
+    {
+        $profit_amount = deposit_profit::where('deposit_id',$request->deposit_id)->sum('profit');
+        $return_profit = fixed_deposit_return::where('member_id',$request->deposit_id)->sum('profit_ammount');
+        $result = $profit_amount - $return_profit;
+        return $result;
+    }
+
+    public function profitStore(Request $request)
+    {
+        $explode = explode('/',$request->return_date);
+
+        $return_date = $explode[2].'-'.$explode[1].'-'.$explode[0];
+        $insert = fixed_deposit_return::create([
+            "return_date" => $return_date,
+            "branch_id" => $request->branch_id,
+            "area_id" => $request->area_id,
+            "member_id" => $request->member_id,
+            "profit_ammount" => $request->profit_amount,
+            "comment" => $request->comment,
+            'status' => 1,
+            "admin_id" => $request->admin_id,
+            'deposit_return_ammount' => '0.00',
+            'total' => '0.00',
+        ]);
+
+        if($insert)
+        {
+            return redirect()->back()->with('success','ফিক্সড ডিপোজিট লাভ উত্তোলন সম্পন্ন করা হলো');
+        }
+        else
+        {
+            return redirect()->back()->with('error','ফিক্সড ডিপোজিট লাভ উত্তোলন সম্পন্ন করা হয়নি');
+        }
+    }
 }

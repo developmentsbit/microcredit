@@ -2,9 +2,9 @@
 class database {
 
     public $servername="localhost";
-	public $username="shamalchaya_admin";
-	public $pass="Bangla%desh&2023";
-	public $db_name="shamalchaya_database";
+	public $username="root";
+	public $pass="";
+	public $db_name="microcredit";
 // 	public $username="root";
 // 	public $pass="";
 // 	public $db_name="microcredit";
