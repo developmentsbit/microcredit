@@ -61,6 +61,8 @@ use App\Http\Controllers\DepositTransactionReport;
 //     return view('welcome');
 // });
 
+Route::get('store_profit',[BackendController::class,'store_profit']);
+
 Route::get('/fix_saving_schema',[BackendController::class,'fix_saving_schema']);
 Route::get('/fix_deposit_schema',[BackendController::class,'fix_deposit_schema']);
 Route::get('/fix_invest_schema',[BackendController::class,'fix_invest_schema']);
@@ -519,6 +521,11 @@ Route::resources([
     'add_asset_expense'=>AssetExpense::class,
     'add_asset_depreciation'=>AssetDepreciation::class,
 ]);
+
+
+Route::get('profit_withdraw',[FixedDepositReturn::class,'profit_withdraw']);
+Route::post('/getProfitAmount',[FixedDepositReturn::class,'getProfitAmount']);
+Route::post('/profitStore',[FixedDepositReturn::class,'profitStore']);
 
 Route::get('deposit_transaction',[DepositTransactionReport::class,'index']);
 Route::post('getFixedDepositMemebers',[DepositTransactionReport::class,'getFixedDepositMemebers']);

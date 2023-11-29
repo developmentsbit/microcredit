@@ -32,6 +32,7 @@ use App\Models\ho_collection;
 use App\Models\ho_handover;
 use App\Models\income;
 use App\Models\expense;
+use App\Models\deposit_profit;
 use Hash;
 use DB;
 
@@ -908,6 +909,37 @@ class BackendController extends Controller
         ->get();
 
         return view('Backend.Layouts.ajax_member_info',compact('memberData'));
+    }
+
+
+    public function store_profit()
+    {
+        // return ;0
+        $deposit = fixed_deposit_registration::where('status',1)->get();
+        foreach($deposit as $d)
+        {
+            $schema = fixed_deposit_schema::where('id',$d->schema_id)->first();
+            $profit_amount = ($d->deposit_ammount * $schema->percantage) / 100;
+
+            $m = date('m');
+            $year = date('Y');
+
+            $check = deposit_profit::where('deposit_id',$d->registration_id)->where('month',$m)->where('year',$year)->count();
+            // echo $check.'<br>';
+
+            if($check == 0)
+            {
+                deposit_profit::create([
+                    'deposit_id' => $d->registration_id,
+                    'date' => date('Y-m-d'),
+                    'month' => date('m'),
+                    'year' => date('Y'),
+                    'profit' => $profit_amount,
+                    'status' => 1,
+                ]);
+                echo "successfully <br>";
+            }
+        }
     }
 
 
